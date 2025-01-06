@@ -1,0 +1,147 @@
+/* Base styling */
+:root {
+    --text-color: #cccccc;
+    --background-color: #0d1117;
+    --link-color: #0366d6;
+    --code-background: #00040a;
+    --border-color: #00040a;
+    --heading-color: #7dc478;
+}
+
+body {
+    font-family: SF Pro Display, Satoshi, Author, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 2em;
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--heading-color);
+}
+
+h1 { font-size: 2em; border-bottom: 1px solid var(--border-color); padding-bottom: .3em; }
+h2 { font-size: 1.5em; border-bottom: 1px solid var(--border-color); padding-bottom: .3em; }
+h3 { font-size: 1.25em; }
+h4 { font-size: 1em; }
+h5 { font-size: 0.875em; }
+h6 { font-size: 0.85em; color: #6a737d; }
+
+/* Links */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Paragraphs and Lists */
+p, ul, ol {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+ul, ol {
+    padding-left: 2em;
+}
+
+li + li {
+    margin-top: 0.25em;
+}
+
+/* Code Blocks */
+code {
+    font-family: "Hasklug Nerd Font Mono", SF Mono, "Liberation Mono", Menlo, monospace;
+    font-size: 95%;
+    padding: 0.2em 0.4em;
+    margin: 0;
+    background-color: var(--code-background);
+    border-radius: 12px;
+}
+
+pre {
+    background-color: var(--code-background);
+    border-radius: 12px;
+    font-size: 95%;
+    line-height: 1.45;
+    overflow: auto;
+    padding: 16px;
+}
+
+pre code {
+    background-color: transparent;
+    border: 0;
+    display: inline;
+    line-height: inherit;
+    margin: 0;
+    overflow: visible;
+    padding: 0;
+}
+
+/* Blockquotes */
+blockquote {
+    margin: 0;
+    padding: 0 1em;
+    color: #6a737d;
+    border-left: 0.25em solid var(--border-color);
+}
+
+/* Tables */
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin-top: 0;
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+table th, table td {
+    padding: 6px 13px;
+    border: 1px solid var(--border-color);
+}
+
+table tr {
+    background-color: var(--background-color);
+    border-top: 1px solid var(--border-color);
+}
+
+table tr:nth-child(2n) {
+    background-color: #f6f8fa;
+}
+
+/* Horizontal Rule */
+hr {
+    height: 0.25em;
+    padding: 0;
+    margin: 24px 0;
+    background-color: var(--border-color);
+    border: 0;
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    box-sizing: content-box;
+    background-color: var(--background-color);
+}
+
+/* Task Lists */
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item input {
+    margin: 0 0.2em 0.25em -1.6em;
+    vertical-align: middle;
+}
