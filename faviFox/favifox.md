@@ -1,6 +1,17 @@
 # faviFox
 > a Firefox extension to handle favicon customization. Let's break this down into parts:
+- On FireFox, disable extension signing in `about:config` -> `xpinstall.signatures.required` = `false`
+- Then, add a signature `id`, which can you can generate using `web-ext`... why you ask? because god-forbid you make the user experience simple and easy - No, you have to do all this bullshit just to load up some spaghettiscript
+> Once you've downloaded a fucking 3rd-party app to "sIgN yOuR eXtEnSiOn", go to mozilla.whatever to obtain a fucking API key so the crackpot team over there can ensure the security of my locally hosted, spaghettiscript extension... because why the fuck not, it must be necessary!
+>> I wonder why developers are so reluctant to move over from chromium's ecosystem, I guess we'll never know!
 
+```json
+"browser_specific_settings": {
+  "gecko": {
+    "id": "limpdev"
+  }
+}
+```
 
 ## manifest.json
 ```json
