@@ -1,4 +1,4 @@
-module github.com/qweb
+module github.com/qweb1-1
 
 go 1.23.3
 
