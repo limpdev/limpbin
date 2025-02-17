@@ -1,0 +1,183 @@
+# `monolith`
+
+```
+ _____     ______________    __________      ___________________    ___
+|     \   /              \  |          |    |                   |  |   |
+|      \_/       __       \_|    __    |    |    ___     ___    |__|   |
+|               |  |            |  |   |    |   |   |   |   |          |
+|   |\     /|   |__|    _       |__|   |____|   |   |   |   |    __    |
+|   | \___/ |          | \                      |   |   |   |   |  |   |
+|___|       |__________|  \_____________________|   |___|   |___|  |___|
+```
+
+A data hoarder’s dream come true: bundle any web page into a single HTML file. You can finally replace that gazillion of open tabs with a gazillion of .html files stored somewhere on your precious little drive.
+
+Unlike the conventional “Save page as”, `monolith` not only saves the target document, it embeds CSS, image, and JavaScript assets **all at once**, producing a single HTML5 document that is a joy to store and share.
+
+If compared to saving websites with `wget -mpk`, this tool embeds all assets as data URLs and therefore lets browsers render the saved page exactly the way it was on the Internet, even when no network connection is available.
+
+---
+
+## Installation
+
+#### Using [Cargo](https://crates.io/crates/monolith) (cross-platform)
+
+```bash
+scoop install main/monolith
+```
+
+```bash
+winget install --id=Y2Z.Monolith -e
+```
+
+```bash
+sudo port install monolith
+```
+
+#### Using [Guix](https://packages.guix.gnu.org/packages/monolith) (GNU/Linux)
+
+```bash
+nix-env -iA nixpkgs.monolith
+```
+
+```bash
+cd /usr/ports/www/monolith/
+make install clean
+```
+
+#### Using [pkgsrc](https://pkgsrc.se/www/monolith) (NetBSD, OpenBSD, Haiku, etc)
+
+```bash
+cd /usr/pkgsrc/www/monolith
+make install clean
+```
+
+```bash
+docker build -t y2z/monolith .
+sudo install -b dist/run-in-container.sh /usr/local/bin/monolith
+```
+
+Dependencies: `libssl`, `cargo`
+
+Install cargo (GNU/Linux) Check if cargo is installed
+
+If cargo is not already installed, install and add it to your existing `$PATH` (paraphrasing the [official installation instructions](https://doc.rust-lang.org/cargo/getting-started/installation.html)):
+
+```bash
+curl https://sh.rustup.rs -sSf | sh
+. "$HOME/.cargo/env"
+```
+
+Proceed with installing from source:
+
+```bash
+git clone https://github.com/Y2Z/monolith.git
+cd monolith
+make install
+```
+
+Every release contains pre-built binaries for Windows, GNU/Linux, as well as platforms with non-standard CPU architecture.
+
+---
+
+## Usage
+
+```bash
+monolith https://lyrics.github.io/db/P/Portishead/Dummy/Roads/ -o portishead-roads-lyrics.html
+```
+
+```bash
+cat some-site-page.html | monolith -aIiFfcMv -b https://some.site/ - > some-site-page-with-assets.html
+```
+
+---
+
+## Options
+
+- `-a`: Exclude audio sources
+
+- `-b`: Use `custom base URL`
+
+- `-B`: Forbid retrieving assets from specified domain(s)
+
+- `-c`: Exclude CSS
+
+- `-C`: Read cookies from `file`
+
+- `-d`: Allow retrieving assets only from specified `domain(s)`
+
+- `-e`: Ignore network errors
+
+- `-E`: Save document using `custom encoding`
+
+- `-f`: Omit frames
+
+- `-F`: Exclude web fonts
+
+- `-h`: Print help information
+
+- `-i`: Remove images
+
+- `-I`: Isolate the document
+
+- `-j`: Exclude JavaScript
+
+- `-k`: Accept invalid X.509 (TLS) certificates
+
+- `-M`: Don't add timestamp and URL information
+
+- `-n`: Extract contents of NOSCRIPT elements
+
+- `-o`: Write output to `file` (use “-” for STDOUT)
+
+- `-s`: Be quiet
+
+- `-t`: Adjust `network request timeout`
+
+- `-u`: Provide `custom User-Agent`
+
+- `-v`: Exclude videos
+
+---
+
+## Whitelisting and blacklisting domains
+
+Options `-d` and `-B` provide control over what domains can be used to retrieve assets from, e.g.:
+
+```bash
+monolith -I -d example.com -d www.example.com https://example.com -o example-only.html
+```
+
+```bash
+monolith -I -B -d .googleusercontent.com -d googleanalytics.com -d .google.com https://example.com -o example-no-ads.html
+```
+
+---
+
+## Dynamic content
+
+Monolith doesn't feature a JavaScript engine, hence websites that retrieve and display data after initial load may require usage of additional tools.
+
+For example, Chromium (Chrome) can be used to act as a pre-processor for such pages:
+
+```bash
+chromium --headless --window-size=1920,1080 --run-all-compositor-stages-before-draw --virtual-time-budget=9000 --incognito --dump-dom https://github.com | monolith - -I -b https://github.com -o github.html
+```
+
+---
+
+## Proxies
+
+Please set `https_proxy`, `http_proxy`, and `no_proxy` environment variables.
+
+---
+
+## Contributing
+
+Please open an issue if something is wrong, that helps make this project better.
+
+---
+
+## License
+
+To the extent possible under law, the author(s) have dedicated all copyright related and neighboring rights to this software to the public domain worldwide. This software is distributed without any warranty.
