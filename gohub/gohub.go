@@ -9,54 +9,45 @@ import (
 )
 
 func main() {
-	// Step 1: Read the Markdown file
 	if len(os.Args) != 2 {
-		fmt.Println("Usage: gohub <markdown_file>")
+		fmt.Println("Usage: gohub <mdFile>")
 		return
 	}
-	markdownFilePath := os.Args[1]
 
-	/// Step 2: Read the Markdown file
-	markdownContent, err := os.ReadFile(markdownFilePath)
+	mdFile := os.Args[1]
+	cssGFM := "https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/GithubAPI.css"
+
+	mdContent, err := os.ReadFile(mdFile)
 	if err != nil {
-		fmt.Printf("Error reading the markdown file %s: %v\n", markdownFilePath, err)
+		fmt.Printf("Could not read: %s", err)
 		return
 	}
 
-	// Step 3: Convert Markdown to HTML
-	html := blackfriday.Run(markdownContent)
+	htmlContent := blackfriday.Run(mdContent)
 
-	cssFile, err := os.ReadFile("C:\\Users\\drewg\\proj\\Github\\limpbin\\gohub\\GithubAPI.css")
+	htmlDoc := fmt.Sprintf(`
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+	<meta charset="UTF-8">
+	<title>Markdown Documentation</title>
+	<link rel="stylesheet" type="text/css" href="%s">
+	</head>
+	<body>
+	<article class="markdown-body">
+	%s
+	</article>
+	</body>
+	</html>`, cssGFM, htmlContent)
+
+	mdFileName := filepath.Base(mdFile)
+	mdNude := mdFileName[:len(mdFileName)-len(filepath.Ext(mdFileName))]
+	outFile := mdNude + ".html"
+	err = os.WriteFile(outFile, []byte(htmlDoc), 0644)
 	if err != nil {
-		fmt.Printf("Error reading the CSS file: %v\n", err)
+		fmt.Printf("Error writing the output HTML file %s: %v\n", outFile, err)
 		return
 	}
 
-	// Step 4: Create a complete HTML document with embedded CSS and JS
-	htmlDocument := fmt.Sprintf(`
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Markdown Documentation</title>
-<style type="text/css">%s</style>
-</head>
-<body>
-<article class="markdown-body">
-%s
-</article>
-</body>
-</html>
-`, cssFile, html)
-
-	// Step 5: Write the HTML to a file (optional)
-	mdFileName := filepath.Base(markdownFilePath)
-	outputFilePath := filepath.Join(mdFileName) + ".html"
-	err = os.WriteFile(outputFilePath, []byte(htmlDocument), 0644)
-	if err != nil {
-		fmt.Printf("Error writing the output HTML file %s: %v\n", outputFilePath, err)
-		return
-	}
-
-	fmt.Printf("HTML document generated successfully: %s\n", outputFilePath)
+	fmt.Printf("HTML document generated successfully: %s\n", outFile)
 }
