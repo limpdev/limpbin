@@ -26,17 +26,12 @@ func main() {
 	// Step 3: Convert Markdown to HTML
 	html := blackfriday.Run(markdownContent)
 
-	cssFile, err := os.ReadFile("GithubAPI_Base.css")
+	cssFile, err := os.ReadFile("C:\\Users\\drewg\\proj\\Github\\limpbin\\gohub\\GithubAPI.css")
 	if err != nil {
 		fmt.Printf("Error reading the CSS file: %v\n", err)
 		return
 	}
 
-	hsFile, err := os.ReadFile("GithubAPI_Highlight.css")
-	if err != nil {
-		fmt.Printf("Error reading the CSS file: %v\n", err)
-		return
-	}
 	// Step 4: Create a complete HTML document with embedded CSS and JS
 	htmlDocument := fmt.Sprintf(`
 <!DOCTYPE html>
@@ -45,7 +40,6 @@ func main() {
 <meta charset="UTF-8">
 <title>Markdown Documentation</title>
 <style type="text/css">%s</style>
-<style type="text/css">%s</style>
 </head>
 <body>
 <article class="markdown-body">
@@ -53,7 +47,7 @@ func main() {
 </article>
 </body>
 </html>
-`, cssFile, hsFile, html)
+`, cssFile, html)
 
 	// Step 5: Write the HTML to a file (optional)
 	mdFileName := filepath.Base(markdownFilePath)
