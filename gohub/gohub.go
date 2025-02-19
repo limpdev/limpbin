@@ -31,16 +31,16 @@ func main() {
 	<meta charset="UTF-8">
 	<title>Markdown Documentation</title>
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/GithubAPI.css">
-	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prism-hl.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prismHL.css">
 	</head>
 	<body>
-	<script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prism-hl.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prismHL.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clipb.js"></script>
 	<article class="markdown-body">
 	%s
 	</article>
 	</body>
-	<script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clip.js"></script>
-	<style type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clip.css"></style>
+	<style type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clipb.css"></style>
 	</html>`, htmlContent)
 
 	mdFileName := filepath.Base(mdFile)
