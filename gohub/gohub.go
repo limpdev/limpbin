@@ -39,7 +39,6 @@ func main() {
 	<article class="markdown-body">
 	%s
 	</article>
- 	<script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clipb.js"></script>
 	</body>
 	</html>`, htmlContent)
 
