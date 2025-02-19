@@ -32,8 +32,11 @@ func main() {
 	<meta charset="UTF-8">
 	<title>Markdown Documentation</title>
 	<link rel="stylesheet" type="text/css" href="%s">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prism-hl.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prism-add.css">
 	</head>
 	<body>
+	<script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prism-hl.js"></script>
 	<article class="markdown-body">
 	%s
 	</article>
