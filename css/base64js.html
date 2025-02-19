@@ -1,25 +1,39 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Markdown Documentation</title>
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/GithubAPI.css"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prism-hl.css"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prism-add.css"
+        />
+    </head>
+    <body>
+        <script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prism-hl.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prism-add.js"></script>
+        <article class="markdown-body">
+            <h1>Convert <code>base64</code> w/ Javascript</h1>
 
-	<!DOCTYPE html>
-	<html lang="en">
-	<head>
-	<meta charset="UTF-8">
-	<title>Markdown Documentation</title>
-	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/GithubAPI.css">
-    <link rel="stylesheet" type="text/css" href="prism-hl.css">
-    <link rel="stylesheet" type="text/css" href="prism-add.css">
-	</head>
-	<body>
-        <script src="prism-hl.js"></script>
-        <script src="prism-add.js"></script>
-	<article class="markdown-body">
-	<h1>Convert <code>base64</code> w/ Javascript</h1>
+            <blockquote>
+                <p>
+                    [!NOTE] Honestly, I straight up ripped this motherfucker from
+                    <strong>cssportal</strong> -&gt; it&rsquo;s more than just the conversion logic
+                    as it includes the logic for a drag n&rsquo;drop handler
+                </p>
+            </blockquote>
 
-<blockquote>
-<p>[!NOTE]
-Honestly, I straight up ripped this motherfucker from <strong>cssportal</strong> -&gt; it&rsquo;s more than just the conversion logic as it includes the logic for a drag n&rsquo;drop handler</p>
-</blockquote>
-
-<pre><code class="language-javascript">$(function() {
+            <pre><code class="language-javascript">$(function() {
 
     var FileSelectHandler = function(e) {
 
@@ -93,7 +107,6 @@ Honestly, I straight up ripped this motherfucker from <strong>cssportal</strong>
     });
 });
 </code></pre>
-
-	</article>
-	</body>
-	</html>
+        </article>
+    </body>
+</html>
