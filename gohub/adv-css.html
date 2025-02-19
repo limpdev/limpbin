@@ -6,13 +6,11 @@
     <title>Markdown Documentation</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/GithubAPI.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prism-hl.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prism-add.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clip.css">
     <script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clip.js"></script>
 </head>
-
 <body>
-  <script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clip.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clip.css">
     <script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prism-hl.js"></script>
     <article class="markdown-body">
         <h1>Advanced <code>CSS</code></h1>
@@ -35,14 +33,14 @@
          }
         &lt;/code&gt;
     &lt;/pre&gt;
-    &lt;button class=&quot;copybtn&quot;&gt;Copy Code&lt;/button&gt;
+    &lt;button class=&quot;copy-button&quot;&gt;Copy Code&lt;/button&gt;
 &lt;/div&gt;
 </code></pre>
         <blockquote>
             <p>the <code>button</code> can go right at the end, before closing the pre-container.</p>
         </blockquote>
         <h4><strong>now we need to make the button</strong></h4>
-        <pre><code class="language-css">.copybtn {
+        <pre><code class="language-css">.copy-button {
      position: absolute; /* Positioned relative to .code-container */
      top: 10px;
      right: 10px;
@@ -56,11 +54,11 @@
      opacity: 0.7; /* semi-transparent */
  }
 
- .copybtn:hover {
+ .copy-button:hover {
      opacity: 1; /* Fully opaque on hover */
  }
 
-.copybtn:focus {
+.copy-button:focus {
      outline: none; /* Remove focus outline */
  }
 
@@ -83,7 +81,7 @@ pre {
         <pre><code class="language-js">document.addEventListener('DOMContentLoaded', function() {
 
     document.querySelectorAll('.code-container').forEach(container =&gt; {
-        const copyButton = container.querySelector('.copybtn');
+        const copyButton = container.querySelector('.copy-button');
         const codeBlock = container.querySelector('pre code') || container.querySelector('pre');
 
         copyButton.addEventListener('click', () =&gt; {

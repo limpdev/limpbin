@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     document.querySelectorAll('.pre-wrapper').forEach(container => {
-        const copyButton = container.querySelector('.copy-button');
+        const copyButton = container.querySelector('.copybtn');
         const codeBlock = container.querySelector('pre code') || container.querySelector('pre');
 
         copyButton.addEventListener('click', () => {
@@ -32,7 +32,7 @@ function addCopyButtonToCodeBlocks() {
     const codeBlocks = document.querySelectorAll('pre > code, pre');
 
     codeBlocks.forEach((codeBlock) => {
-        if (codeBlock.parentNode.querySelector('.copy-button')) {
+        if (codeBlock.parentNode.querySelector('.copybtn')) {
             return;
         }
 
@@ -57,7 +57,7 @@ function addCopyButtonToCodeBlocks() {
 
         // 3. Create the button element
         const copyButton = document.createElement('button');
-        copyButton.className = 'copy-button';
+        copyButton.className = 'copybtn';
         copyButton.type = 'button';
         copyButton.setAttribute('aria-label', 'Copy code');
         copyButton.appendChild(svg); // Append the SVG to the button
