@@ -32,6 +32,7 @@ func main() {
 	<title>Markdown Documentation</title>
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/GithubAPI.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prismHL.css">
+ 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clipb.css">
 	</head>
 	<body>
 	<script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prismHL.js"></script>
@@ -40,7 +41,6 @@ func main() {
 	%s
 	</article>
 	</body>
-	<style type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clipb.css"></style>
 	</html>`, htmlContent)
 
 	mdFileName := filepath.Base(mdFile)
