@@ -24,8 +24,7 @@ func main() {
 
 	htmlContent := blackfriday.Run(mdContent)
 
-	htmlDoc := fmt.Sprintf(`
-	<!DOCTYPE html>
+	htmlDoc := fmt.Sprintf(`<!DOCTYPE html>
 	<html lang="en">
 	<head>
 	<meta charset="UTF-8">
