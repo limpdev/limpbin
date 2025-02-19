@@ -136,19 +136,19 @@ function addCopyButtonToCodeBlocks() {
     });
 }
 
-// Call the function when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', addCopyButtonToCodeBlocks);
-
-//  Optionally, if you're using a framework that dynamically loads content (e.g., React, Vue, Angular),
-//  you might need to call `addCopyButtonToCodeBlocks` after the content is loaded.  A MutationObserver
-//  is the best general-purpose solution for this:
-
-const observer = new MutationObserver((mutations) => {
+document.addEventListener('DOMContentLoaded', () => {
     addCopyButtonToCodeBlocks();
-});
 
-// Start observing the document body for changes.  Adjust the target node as needed.
-observer.observe(document.body, {
-    childList: true, // Watch for additions/removals of child nodes
-    subtree: true // Watch all descendants (not just direct children)
+    const observer = new MutationObserver((mutations) => {
+        addCopyButtonToCodeBlocks();
+    });
+
+    if (document.body) {
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    } else {
+        console.error('document.body not found');
+    }
 });
