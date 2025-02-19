@@ -1,30 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Markdown Documentation</title>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/GithubAPI.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prism-hl.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clip.css">
-    <script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clip.js"></script>
-</head>
-<body>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clip.css">
-    <script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prism-hl.js"></script>
-    <article class="markdown-body">
-        <h1>Advanced <code>CSS</code></h1>
-        <blockquote>
-            <p>assorted features/functions using more advanced <code>css</code>, <code>html</code>, and <code>javascript</code></p>
-        </blockquote>
-        <h1>Gunmetal Background for Pages</h1>
-        <pre><code class="language-css">.background {
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+	<meta charset="UTF-8">
+	<title>Markdown Documentation</title>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/GithubAPI.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prism-hl.css">
+	</head>
+	<body>
+	<script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prism-hl.js"></script>
+	<article class="markdown-body">
+	<h1>Advanced <code>CSS</code></h1>
+
+<blockquote>
+<p>assorted features/functions using more advanced <code>css</code>, <code>html</code>, and <code>javascript</code>
+</p>
+
+<h1>Gunmetal Background for Pages</h1>
+
+<p>
+<code>css
+.background {
     background-image: linear-gradient #272a2c, #161819;
     background-color: initial;
-</code></pre>
-        <h2>Button -&gt; <code>copy code</code></h2>
-        <p>Make sure the <code>pre</code> blocks within the HTML are wrapped by a <code>div</code>, perhaps called &ldquo;pre-container&rdquo;:</p>
-        <pre><code class="language-html">&lt;div class=&quot;code-container&quot;&gt;
+</code>
+</p>
+
+<h2>Button -&gt; <code>copy code</code></h2>
+
+<p>Make sure the <code>pre</code> blocks within the HTML are wrapped by a <code>div</code>, perhaps called &ldquo;pre-container&rdquo;:
+<code>html
+&lt;div class=&quot;code-container&quot;&gt;
     &lt;pre&gt;
         &lt;code class=&quot;language-javascript&quot;&gt;
          // This is some example javascript code
@@ -35,12 +41,14 @@
     &lt;/pre&gt;
     &lt;button class=&quot;copy-button&quot;&gt;Copy Code&lt;/button&gt;
 &lt;/div&gt;
-</code></pre>
-        <blockquote>
-            <p>the <code>button</code> can go right at the end, before closing the pre-container.</p>
-        </blockquote>
-        <h4><strong>now we need to make the button</strong></h4>
-        <pre><code class="language-css">.copy-button {
+</code>
+the <code>button</code> can go right at the end, before closing the pre-container.
+</p>
+
+<h4><strong>now we need to make the button</strong></h4>
+
+<p><code>css
+.copy-button {
      position: absolute; /* Positioned relative to .code-container */
      top: 10px;
      right: 10px;
@@ -76,9 +84,12 @@ pre {
     overflow-x: auto; /* Allows horizontal scrolling if code is too wide */
     padding: 10px;
 }
-</code></pre>
-        <h3>🧠Clipboard Logic, in Javascript</h3>
-        <pre><code class="language-js">document.addEventListener('DOMContentLoaded', function() {
+</code></p>
+
+<h3>🧠Clipboard Logic, in Javascript</h3>
+
+<p><code>js
+document.addEventListener('DOMContentLoaded', function() {
 
     document.querySelectorAll('.code-container').forEach(container =&gt; {
         const copyButton = container.querySelector('.copy-button');
@@ -104,13 +115,17 @@ pre {
         });
     });
 });
-</code></pre>
-        <hr />
-        <h3><em>blurred theme for zed editor</em></h3>
-        <hr />
-        <blockquote>
-            <p><code>catppuccino espresso w/ blur</code></p>
-            <pre><code class="language-json">{
+</code>
+
+&mdash;</p>
+
+<h3><em>blurred theme for zed editor</em></h3>
+
+<p>&mdash;
+
+<code>catppuccino espresso w/ blur</code>
+<code>json
+{
   &quot;name&quot;: &quot;Catppuccin Espresso (Blur)&quot;,
   &quot;appearance&quot;: &quot;dark&quot;,
   &quot;style&quot;: {
@@ -806,9 +821,11 @@ pre {
 ]
 }
 
-</code></pre>
-        </blockquote>
-    </article>
-</body>
+</code></p>
+</blockquote>
 
-</html>
+	</article>
+	</body>
+	<script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clip.js"></script>
+	<style type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clip.css"></style>
+	</html>

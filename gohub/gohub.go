@@ -15,7 +15,6 @@ func main() {
 	}
 
 	mdFile := os.Args[1]
-	cssGFM := "https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/GithubAPI.css"
 
 	mdContent, err := os.ReadFile(mdFile)
 	if err != nil {
@@ -31,9 +30,8 @@ func main() {
 	<head>
 	<meta charset="UTF-8">
 	<title>Markdown Documentation</title>
-	<link rel="stylesheet" type="text/css" href="%s">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/GithubAPI.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prism-hl.css">
-	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prism-add.css">
 	</head>
 	<body>
 	<script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prism-hl.js"></script>
@@ -41,7 +39,9 @@ func main() {
 	%s
 	</article>
 	</body>
-	</html>`, cssGFM, htmlContent)
+	<script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clip.js"></script>
+	<style type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clip.css"></style>
+	</html>`, htmlContent)
 
 	mdFileName := filepath.Base(mdFile)
 	mdNude := mdFileName[:len(mdFileName)-len(filepath.Ext(mdFileName))]
