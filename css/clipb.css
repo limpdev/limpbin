@@ -80,3 +80,21 @@ pre {
     position: relative;
     padding-top: 2rem !important;
 }
+
+.language-label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #09090a;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-family: Satoshi, Author, SF Pro Display;
+    border-radius: 0 4px 0 4px;
+    opacity: 0.2;
+    color: #bbbbbb;
+}
+
+.language-label:hover {
+    opacity: 0.8;
+    color: #7b98da;
+}
