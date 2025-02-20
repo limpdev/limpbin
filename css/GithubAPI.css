@@ -46,7 +46,7 @@
         --color-canvas-subtle: #09090a;
         --color-border-default: #30363d;
         --color-border-muted: #21262d;
-        --color-neutral-muted: rgba(110, 118, 129, 0.4);
+        --color-neutral-muted: #170d11;
         --color-accent-fg: #2f81f7;
         --color-accent-emphasis: #1f6feb;
         --color-success-fg: #3fb950;
@@ -218,7 +218,7 @@ body {
     padding-bottom: .3em;
     font-size: 2em;
     border-bottom: 1px solid var(--color-border-muted);
-    color: #c4548c;
+    color: rgba(2,118,170,0.95);
 }
 
 .markdown-body mark {
@@ -841,9 +841,7 @@ body {
 
 .markdown-body code,
 .markdown-body tt {
-    padding: .2em .4em;
     margin: 0;
-    font-size: 85%;
     white-space: break-spaces;
     background-color: var(--color-neutral-muted);
     border-radius: 9px;
@@ -868,7 +866,11 @@ body {
 }
 
 .markdown-body pre code {
-    font-size: 100%;
+    font-size: 80%;
+    padding-top: .3em;
+    padding-bottom: .3em;
+    padding-left: .3em;
+    padding-right: .3em;
 }
 
 .markdown-body pre>code {
