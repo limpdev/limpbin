@@ -86,3 +86,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+// Capture the code language specified in the pre-tags
+document.addEventListener('DOMContentLoaded', () => {
+      const pres = document.querySelectorAll('pre[class^="language-"]');
+      
+      pres.forEach(pre => {
+        // Get the language from the class name
+        const languageClass = Array.from(pre.classList)
+          .find(className => className.startsWith('language-'));
+        
+        if (languageClass) {
+          // Extract the language name (everything after 'language-')
+          const language = languageClass.split('-')[1];
+          
+          // Create and insert the language label
+          const label = document.createElement('div');
+          label.className = 'language-label';
+          label.textContent = language;
+          
+          // Wrap pre in container if not already wrapped
+          if (!pre.parentElement.classList.contains('code-container')) {
+            const container = document.createElement('div');
+            container.className = 'code-container';
+            pre.parentNode.insertBefore(container, pre);
+            container.appendChild(pre);
+          }
+          
+          pre.parentElement.appendChild(label);
+        }
+      });
+    });
