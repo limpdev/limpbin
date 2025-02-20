@@ -12,16 +12,16 @@
     align-items: center;
     justify-content: center;
     padding: 6px;
-    background: #252525;
+    background: #09090a;
     border: 0px solid #0d1117;
     border-radius: 4px;
-    cursor: pointer;
+    cursor: copy;
     transition: all 0.6s ease;
     z-index: 10;
 }
 
 .copy-button:hover {
-    background: #0d1117;
+    background: linear-gradient(90deg, #89f7fe 0%, #66a6ff 100%);
     border-color: hidden;
 }
 
@@ -79,4 +79,22 @@
 pre {
     position: relative;
     padding-top: 2rem !important;
+}
+
+.language-label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #09090a;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-family: Satoshi, Author, SF Pro Display;
+    border-radius: 0 4px 0 4px;
+    opacity: 0.2;
+    color: #bbbbbb;
+}
+
+.language-label:hover {
+    opacity: 0.8;
+    color: #7b98da;
 }
