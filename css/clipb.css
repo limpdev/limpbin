@@ -1,5 +1,5 @@
 /* Copy button container */
-.pre-wrapper {
+.code-wrapper {
     position: relative;
 }
 
@@ -15,14 +15,19 @@
     background: #09090a;
     border: 0px solid #0d1117;
     border-radius: 4px;
-    cursor: copy;
-    transition: all 0.6s ease;
+    transition: all 1s ease;
     z-index: 10;
+    color: #7b98da;
+    opacity: 0.6;
+    font-size: large;
 }
 
 .copy-button:hover {
-    background: linear-gradient(90deg, #89f7fe 0%, #66a6ff 100%);
+    transition: all 1s ease;
+    background: radial-gradient(#f5d49e 0%, #09090a 60%);
     border-color: hidden;
+    opacity: 0.9;
+    font-size: x-large;
 }
 
 /* SVG icon styles */
@@ -78,7 +83,8 @@
 /* Ensure pre tags have relative positioning for button placement */
 pre {
     position: relative;
-    padding-top: 2rem !important;
+    padding-top: 1.25rem !important;
+    padding-left: 1.75em !important;
 }
 
 .language-label {
@@ -88,7 +94,10 @@ pre {
     background: #09090a;
     padding: 4px 8px;
     font-size: 12px;
-    font-family: Satoshi, Author, SF Pro Display;
+    font-family:
+        Satoshi,
+        Author,
+        SF Pro Display;
     border-radius: 0 4px 0 4px;
     opacity: 0.2;
     color: #bbbbbb;

@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Markdown Documentation</title>
+        <link rel="stylesheet" type="text/css" href="GithubAPI.css" />
+        <link rel="stylesheet" type="text/css" href="prismHL.css" />
+        <link rel="stylesheet" type="text/css" href="clipb.css" />
+    </head>
+    <body>
+        <article class="markdown-body">
+            <h1>Advanced <code>CSS</code></h1>
+
+            <blockquote>
+                <p>
+                    assorted features/functions using more advanced <code>css</code>,
+                    <code>html</code>, and <code>javascript</code>
+                </p>
+            </blockquote>
+
+            <h1>Gunmetal Background for Pages</h1>
+
+            <pre><code class="language-css">.background {
+    background-image: linear-gradient #272a2c, #161819;
+    background-color: initial;
+</code></pre>
+
+            <h2>Button -&gt; <code>copy code</code></h2>
+
+            <p>
+                Make sure the <code>pre</code> blocks within the HTML are wrapped by a
+                <code>div</code>, perhaps called &ldquo;pre-container&rdquo;:
+            </p>
+
+            <pre><code class="language-html">&lt;div class=&quot;code-container&quot;&gt;
+    &lt;pre&gt;
+        &lt;code class=&quot;language-javascript&quot;&gt;
+         // This is some example javascript code
+         function myFunction() {
+             console.log(&quot;some shit for the garbage collector&quot;);
+         }
+        &lt;/code&gt;
+    &lt;/pre&gt;
+    &lt;button class=&quot;copy-button&quot;&gt;Copy Code&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+
+            <blockquote>
+                <p>
+                    the <code>button</code> can go right at the end, before closing the
+                    pre-container.
+                </p>
+            </blockquote>
+
+            <h4><strong>now we need to make the button</strong></h4>
+
+            <pre><code class="language-css">.copy-button {
+     position: absolute; /* Positioned relative to .code-container */
+     top: 10px;
+     right: 10px;
+     background-color: #4CAF50;
+     color: white;
+     border: none;
+     padding: 8px 12px;
+     border-radius: 4px;
+     cursor: pointer;
+     font-size: 14px;
+     opacity: 0.7; /* semi-transparent */
+ }
+
+ .copy-button:hover {
+     opacity: 1; /* Fully opaque on hover */
+ }
+
+.copy-button:focus {
+     outline: none; /* Remove focus outline */
+ }
+
+.code-container {
+    position: relative; /* Needed for absolute positioning of the button */
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+pre {
+    margin: 0;
+    overflow-x: auto; /* Allows horizontal scrolling if code is too wide */
+    padding: 10px;
+}
+</code></pre>
+
+            <h3>🧠Clipboard Logic, in Javascript</h3>
+
+            <pre><code class="language-js">document.addEventListener('DOMContentLoaded', function() {
+
+    document.querySelectorAll('.code-container').forEach(container =&gt; {
+        const copyButton = container.querySelector('.copy-button');
+        const codeBlock = container.querySelector('pre code') || container.querySelector('pre');
+
+        copyButton.addEventListener('click', () =&gt; {
+            const codeToCopy = codeBlock.textContent;
+
+            navigator.clipboard.writeText(codeToCopy)
+              .then(() =&gt; {
+                copyButton.textContent = 'Copied!';
+                setTimeout(() =&gt; {
+                    copyButton.textContent = 'Copy Code';
+                }, 2000);
+               })
+              .catch(err =&gt; {
+                console.error('Failed to copy', err);
+                copyButton.textContent = 'Copy Failed';
+                setTimeout(() =&gt; {
+                    copyButton.textContent = 'Copy Code';
+                }, 2000);
+               });
+        });
+    });
+});
+</code></pre>
+
+            <hr />
+
+            <h3><em>blurred theme for zed editor</em></h3>
+
+            <hr />
+
+            <blockquote>
+                <p><code>catppuccino espresso w/ blur</code></p>
+
+                <pre><code class="language-json">{
+  &quot;name&quot;: &quot;Catppuccin Espresso (Blur)&quot;,
+  &quot;appearance&quot;: &quot;dark&quot;,
+  &quot;style&quot;: {
+    &quot;accents&quot;: [
+      &quot;#c6aaf666&quot;,
+      &quot;#bac1f766&quot;,
+      &quot;#8cc7e766&quot;,
+      &quot;#add8a866&quot;,
+      &quot;#e6d4b066&quot;,
+      &quot;#ecb19766&quot;,
+      &quot;#e696a966&quot;
+    ],
+    &quot;background.appearance&quot;: &quot;blurred&quot;,
+    &quot;border&quot;: &quot;#00000000&quot;,
+    &quot;border.variant&quot;: &quot;#00000000&quot;,
+    &quot;border.focused&quot;: &quot;#b7bdf8&quot;,
+    &quot;border.selected&quot;: &quot;#c6a0f6&quot;,
+    &quot;border.transparent&quot;: &quot;#a6da95&quot;,
+    &quot;border.disabled&quot;: &quot;#6e738d&quot;,
+    &quot;elevated_surface.background&quot;: &quot;#0a0a0a&quot;,
+    &quot;surface.background&quot;: &quot;#000000d0&quot;,
+    &quot;background&quot;: &quot;#00000887&quot;,
+    &quot;element.background&quot;: &quot;#181926&quot;,
+    &quot;element.hover&quot;: &quot;#494d644d&quot;,
+    &quot;element.active&quot;: &quot;#00000000&quot;,
+    &quot;element.selected&quot;: &quot;#363a4f4d&quot;,
+    &quot;element.disabled&quot;: &quot;#6e738d&quot;,
+    &quot;drop_target.background&quot;: &quot;#f4dbd618&quot;,
+    &quot;ghost_element.background&quot;: &quot;#18192659&quot;,
+    &quot;ghost_element.hover&quot;: &quot;#f4dbd608&quot;,
+    &quot;ghost_element.active&quot;: &quot;#f4dbd612&quot;,
+    &quot;ghost_element.selected&quot;: &quot;#f4dbd612&quot;,
+    &quot;ghost_element.disabled&quot;: &quot;#6e738d&quot;,
+    &quot;text&quot;: &quot;#cad3f5&quot;,
+    &quot;text.muted&quot;: &quot;#b8c0e0&quot;,
+    &quot;text.placeholder&quot;: &quot;#5b6078&quot;,
+    &quot;text.disabled&quot;: &quot;#494d64&quot;,
+    &quot;text.accent&quot;: &quot;#c6a0f6&quot;,
+    &quot;icon&quot;: &quot;#cad3f5&quot;,
+    &quot;icon.muted&quot;: &quot;#8087a2&quot;,
+    &quot;icon.disabled&quot;: &quot;#6e738d&quot;,
+    &quot;icon.placeholder&quot;: &quot;#5b6078&quot;,
+    &quot;icon.accent&quot;: &quot;#c6a0f6&quot;,
+    &quot;status_bar.background&quot;: &quot;#000000d7&quot;,
+    &quot;title_bar.background&quot;: &quot;#00000887&quot;,
+    &quot;title_bar.inactive_background&quot;: &quot;#181926d9&quot;,
+    &quot;toolbar.background&quot;: &quot;#00000000&quot;,
+    &quot;tab_bar.background&quot;: &quot;#00000000&quot;,
+    &quot;tab.inactive_background&quot;: &quot;#00000000&quot;,
+    &quot;tab.active_background&quot;: &quot;#f4dbd612&quot;,
+    &quot;search.match_background&quot;: &quot;#8bd5ca33&quot;,
+    &quot;panel.background&quot;: &quot;#00000000&quot;,
+    &quot;panel.focused_border&quot;: &quot;00000000&quot;,
+    &quot;panel.indent_guide&quot;: &quot;#363a4f99&quot;,
+    &quot;panel.indent_guide_active&quot;: &quot;#5b6078&quot;,
+    &quot;panel.indent_guide_hover&quot;: &quot;#c6a0f6&quot;,
+    &quot;pane.focused_border&quot;: &quot;#cad3f5&quot;,
+    &quot;pane_group.border&quot;: &quot;#363a4f&quot;,
+    &quot;scrollbar.thumb.background&quot;: &quot;#f4dbd612&quot;,
+    &quot;scrollbar.thumb.hover_background&quot;: &quot;#6e738d&quot;,
+    &quot;scrollbar.thumb.border&quot;: &quot;#c6a0f6&quot;,
+    &quot;scrollbar.track.background&quot;: &quot;#00000000&quot;,
+    &quot;scrollbar.track.border&quot;: &quot;#00000000&quot;,
+    &quot;editor.foreground&quot;: &quot;#cad3f5&quot;,
+    &quot;editor.background&quot;: &quot;#00000000&quot;,
+    &quot;editor.gutter.background&quot;: &quot;#00000000&quot;,
+    &quot;editor.subheader.background&quot;: &quot;#1e2030&quot;,
+    &quot;editor.active_line.background&quot;: &quot;#00000000&quot;,
+    &quot;editor.highlighted_line.background&quot;: &quot;#f4dbd612&quot;,
+    &quot;editor.line_number&quot;: &quot;#ffffff20&quot;,
+    &quot;editor.active_line_number&quot;: &quot;#f4dbd690&quot;,
+    &quot;editor.invisible&quot;: &quot;#939ab766&quot;,
+    &quot;editor.wrap_guide&quot;: &quot;#5b6078&quot;,
+    &quot;editor.active_wrap_guide&quot;: &quot;#5b6078&quot;,
+    &quot;editor.document_highlight.bracket_background&quot;: &quot;#f4dbd640&quot;,
+    &quot;editor.document_highlight.read_background&quot;: &quot;#a5adcb29&quot;,
+    &quot;editor.document_highlight.write_background&quot;: &quot;#a5adcb29&quot;,
+    &quot;editor.indent_guide&quot;: &quot;#363a4f99&quot;,
+    &quot;editor.indent_guide_active&quot;: &quot;#5b6078&quot;,
+    &quot;terminal.background&quot;: &quot;#00000000&quot;,
+    &quot;terminal.ansi.background&quot;: &quot;#24273a&quot;,
+    &quot;terminal.foreground&quot;: &quot;#cad3f5&quot;,
+    &quot;terminal.dim_foreground&quot;: &quot;#8087a2&quot;,
+    &quot;terminal.bright_foreground&quot;: &quot;#cad3f5&quot;,
+    &quot;terminal.ansi.black&quot;: &quot;#494d64&quot;,
+    &quot;terminal.ansi.red&quot;: &quot;#ed8796&quot;,
+    &quot;terminal.ansi.green&quot;: &quot;#a6da95&quot;,
+    &quot;terminal.ansi.yellow&quot;: &quot;#eed49f&quot;,
+    &quot;terminal.ansi.blue&quot;: &quot;#8aadf4&quot;,
+    &quot;terminal.ansi.magenta&quot;: &quot;#f5bde6&quot;,
+    &quot;terminal.ansi.cyan&quot;: &quot;#8bd5ca&quot;,
+    &quot;terminal.ansi.white&quot;: &quot;#b8c0e0&quot;,
+    &quot;terminal.ansi.bright_black&quot;: &quot;#5b6078&quot;,
+    &quot;terminal.ansi.bright_red&quot;: &quot;#ed8796&quot;,
+    &quot;terminal.ansi.bright_green&quot;: &quot;#a6da95&quot;,
+    &quot;terminal.ansi.bright_yellow&quot;: &quot;#eed49f&quot;,
+    &quot;terminal.ansi.bright_blue&quot;: &quot;#8aadf4&quot;,
+    &quot;terminal.ansi.bright_magenta&quot;: &quot;#f5bde6&quot;,
+    &quot;terminal.ansi.bright_cyan&quot;: &quot;#8bd5ca&quot;,
+    &quot;terminal.ansi.bright_white&quot;: &quot;#a5adcb&quot;,
+    &quot;terminal.ansi.dim_black&quot;: &quot;#494d64&quot;,
+    &quot;terminal.ansi.dim_red&quot;: &quot;#ed8796&quot;,
+    &quot;terminal.ansi.dim_green&quot;: &quot;#a6da95&quot;,
+    &quot;terminal.ansi.dim_yellow&quot;: &quot;#eed49f&quot;,
+    &quot;terminal.ansi.dim_blue&quot;: &quot;#8aadf4&quot;,
+    &quot;terminal.ansi.dim_magenta&quot;: &quot;#f5bde6&quot;,
+    &quot;terminal.ansi.dim_cyan&quot;: &quot;#8bd5ca&quot;,
+    &quot;terminal.ansi.dim_white&quot;: &quot;#b8c0e0&quot;,
+    &quot;link_text.hover&quot;: &quot;#91d7e3&quot;,
+    &quot;conflict&quot;: &quot;#eed49f&quot;,
+    &quot;conflict.border&quot;: &quot;#eed49f&quot;,
+    &quot;conflict.background&quot;: &quot;#1e2030&quot;,
+    &quot;created&quot;: &quot;#a6da95&quot;,
+    &quot;created.border&quot;: &quot;#a6da95&quot;,
+    &quot;created.background&quot;: &quot;#1e2030&quot;,
+    &quot;deleted&quot;: &quot;#ed8796&quot;,
+    &quot;deleted.border&quot;: &quot;#ed8796&quot;,
+    &quot;deleted.background&quot;: &quot;#1e2030&quot;,
+    &quot;hidden&quot;: &quot;#6e738d&quot;,
+    &quot;hidden.border&quot;: &quot;#6e738d&quot;,
+    &quot;hidden.background&quot;: &quot;#1e2030&quot;,
+    &quot;hint&quot;: &quot;#5b6078&quot;,
+    &quot;hint.border&quot;: &quot;#5b6078&quot;,
+    &quot;hint.background&quot;: &quot;#1a1a1ac0&quot;,
+    &quot;ignored&quot;: &quot;#6e738d&quot;,
+    &quot;ignored.border&quot;: &quot;#6e738d&quot;,
+    &quot;ignored.background&quot;: &quot;#1e2030&quot;,
+    &quot;modified&quot;: &quot;#eed49f&quot;,
+    &quot;modified.border&quot;: &quot;#eed49f&quot;,
+    &quot;modified.background&quot;: &quot;#1e2030&quot;,
+    &quot;predictive&quot;: &quot;#6e738d&quot;,
+    &quot;predictive.border&quot;: &quot;#b7bdf8&quot;,
+    &quot;predictive.background&quot;: &quot;#1e2030&quot;,
+    &quot;renamed&quot;: &quot;#7dc4e4&quot;,
+    &quot;renamed.border&quot;: &quot;#7dc4e4&quot;,
+    &quot;renamed.background&quot;: &quot;#1e2030&quot;,
+    &quot;info&quot;: &quot;#8bd5ca&quot;,
+    &quot;info.border&quot;: &quot;#8bd5ca&quot;,
+    &quot;info.background&quot;: &quot;#7ab3b3&quot;,
+    &quot;warning&quot;: &quot;#eed49f&quot;,
+    &quot;warning.border&quot;: &quot;#eed49f&quot;,
+    &quot;warning.background&quot;: &quot;#d3a168&quot;,
+    &quot;error&quot;: &quot;#ed8796&quot;,
+    &quot;error.border&quot;: &quot;#ed8796&quot;,
+    &quot;error.background&quot;: &quot;#ed8796&quot;,
+    &quot;success&quot;: &quot;#a6da95&quot;,
+    &quot;success.border&quot;: &quot;#a6da95&quot;,
+    &quot;success.background&quot;: &quot;#8cbe6c&quot;,
+    &quot;unreachable&quot;: &quot;#ed8796&quot;,
+    &quot;unreachable.border&quot;: &quot;#ed8796&quot;,
+    &quot;unreachable.background&quot;: &quot;#ed87961f&quot;,
+    &quot;players&quot;: [
+      {
+        &quot;cursor&quot;: &quot;#f4dbd6&quot;,
+        &quot;selection&quot;: &quot;#5b607880&quot;,
+        &quot;background&quot;: &quot;#f4dbd6&quot;
+      },
+      {
+        &quot;cursor&quot;: &quot;#c6aaf6&quot;,
+        &quot;selection&quot;: &quot;#c6aaf633&quot;,
+        &quot;background&quot;: &quot;#c6aaf6&quot;
+      },
+      {
+        &quot;cursor&quot;: &quot;#bac1f7&quot;,
+        &quot;selection&quot;: &quot;#bac1f733&quot;,
+        &quot;background&quot;: &quot;#bac1f7&quot;
+      },
+      {
+        &quot;cursor&quot;: &quot;#8cc7e7&quot;,
+        &quot;selection&quot;: &quot;#8cc7e733&quot;,
+        &quot;background&quot;: &quot;#8cc7e7&quot;
+      },
+      {
+        &quot;cursor&quot;: &quot;#add8a8&quot;,
+        &quot;selection&quot;: &quot;#add8a833&quot;,
+        &quot;background&quot;: &quot;#add8a8&quot;
+      },
+      {
+        &quot;cursor&quot;: &quot;#e6d4b0&quot;,
+        &quot;selection&quot;: &quot;#e6d4b033&quot;,
+        &quot;background&quot;: &quot;#e6d4b0&quot;
+      },
+      {
+        &quot;cursor&quot;: &quot;#ecb197&quot;,
+        &quot;selection&quot;: &quot;#ecb19733&quot;,
+        &quot;background&quot;: &quot;#ecb197&quot;
+      },
+      {
+        &quot;cursor&quot;: &quot;#e696a9&quot;,
+        &quot;selection&quot;: &quot;#e696a933&quot;,
+        &quot;background&quot;: &quot;#e696a9&quot;
+      }
+    ],
+    &quot;syntax&quot;: {
+      &quot;variable&quot;: {
+        &quot;color&quot;: &quot;#cad3f5&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;variable.builtin&quot;: {
+        &quot;color&quot;: &quot;#ed8796&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;variable.parameter&quot;: {
+        &quot;color&quot;: &quot;#ee99a0&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;variable.member&quot;: {
+        &quot;color&quot;: &quot;#8aadf4&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;variable.special&quot;: {
+        &quot;color&quot;: &quot;#f5bde6&quot;,
+        &quot;font_style&quot;: &quot;italic&quot;,
+        &quot;font_weight&quot;: null
+      },
+      &quot;constant&quot;: {
+        &quot;color&quot;: &quot;#f5a97f&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;constant.builtin&quot;: {
+        &quot;color&quot;: &quot;#f5a97f&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;constant.macro&quot;: {
+        &quot;color&quot;: &quot;#c6a0f6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;module&quot;: {
+        &quot;color&quot;: &quot;#eed49f&quot;,
+        &quot;font_style&quot;: &quot;italic&quot;,
+        &quot;font_weight&quot;: null
+      },
+      &quot;label&quot;: {
+        &quot;color&quot;: &quot;#7dc4e4&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;string&quot;: {
+        &quot;color&quot;: &quot;#a6da95&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;string.documentation&quot;: {
+        &quot;color&quot;: &quot;#8bd5ca&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;string.regexp&quot;: {
+        &quot;color&quot;: &quot;#f5a97f&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;string.escape&quot;: {
+        &quot;color&quot;: &quot;#f5bde6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;string.special&quot;: {
+        &quot;color&quot;: &quot;#f5bde6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;string.special.path&quot;: {
+        &quot;color&quot;: &quot;#f5bde6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;string.special.symbol&quot;: {
+        &quot;color&quot;: &quot;#f0c6c6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;string.special.url&quot;: {
+        &quot;color&quot;: &quot;#f4dbd6&quot;,
+        &quot;font_style&quot;: &quot;italic&quot;,
+        &quot;font_weight&quot;: null
+      },
+      &quot;character&quot;: {
+        &quot;color&quot;: &quot;#8bd5ca&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;character.special&quot;: {
+        &quot;color&quot;: &quot;#f5bde6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;boolean&quot;: {
+        &quot;color&quot;: &quot;#f5a97f&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;number&quot;: {
+        &quot;color&quot;: &quot;#f5a97f&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;number.float&quot;: {
+        &quot;color&quot;: &quot;#f5a97f&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;type&quot;: {
+        &quot;color&quot;: &quot;#eed49f&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;type.builtin&quot;: {
+        &quot;color&quot;: &quot;#c6a0f6&quot;,
+        &quot;font_style&quot;: &quot;italic&quot;,
+        &quot;font_weight&quot;: null
+      },
+      &quot;type.definition&quot;: {
+        &quot;color&quot;: &quot;#eed49f&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;type.interface&quot;: {
+        &quot;color&quot;: &quot;#eed49f&quot;,
+        &quot;font_style&quot;: &quot;italic&quot;,
+        &quot;font_weight&quot;: null
+      },
+      &quot;type.super&quot;: {
+        &quot;color&quot;: &quot;#eed49f&quot;,
+        &quot;font_style&quot;: &quot;italic&quot;,
+        &quot;font_weight&quot;: null
+      },
+      &quot;attribute&quot;: {
+        &quot;color&quot;: &quot;#f5a97f&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;property&quot;: {
+        &quot;color&quot;: &quot;#8aadf4&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;function&quot;: {
+        &quot;color&quot;: &quot;#8aadf4&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;function.builtin&quot;: {
+        &quot;color&quot;: &quot;#f5a97f&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;function.call&quot;: {
+        &quot;color&quot;: &quot;#8aadf4&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;function.macro&quot;: {
+        &quot;color&quot;: &quot;#8bd5ca&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;function.method&quot;: {
+        &quot;color&quot;: &quot;#8aadf4&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;function.method.call&quot;: {
+        &quot;color&quot;: &quot;#8aadf4&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;constructor&quot;: {
+        &quot;color&quot;: &quot;#f0c6c6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;operator&quot;: {
+        &quot;color&quot;: &quot;#91d7e3&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;keyword&quot;: {
+        &quot;color&quot;: &quot;#c6a0f6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;keyword.modifier&quot;: {
+        &quot;color&quot;: &quot;#c6a0f6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;keyword.type&quot;: {
+        &quot;color&quot;: &quot;#c6a0f6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;keyword.coroutine&quot;: {
+        &quot;color&quot;: &quot;#c6a0f6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;keyword.function&quot;: {
+        &quot;color&quot;: &quot;#c6a0f6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;keyword.operator&quot;: {
+        &quot;color&quot;: &quot;#c6a0f6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;keyword.import&quot;: {
+        &quot;color&quot;: &quot;#c6a0f6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;keyword.repeat&quot;: {
+        &quot;color&quot;: &quot;#c6a0f6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;keyword.return&quot;: {
+        &quot;color&quot;: &quot;#c6a0f6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;keyword.debug&quot;: {
+        &quot;color&quot;: &quot;#c6a0f6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;keyword.exception&quot;: {
+        &quot;color&quot;: &quot;#c6a0f6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;keyword.conditional&quot;: {
+        &quot;color&quot;: &quot;#c6a0f6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;keyword.conditional.ternary&quot;: {
+        &quot;color&quot;: &quot;#c6a0f6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;keyword.directive&quot;: {
+        &quot;color&quot;: &quot;#f5bde6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;keyword.directive.define&quot;: {
+        &quot;color&quot;: &quot;#f5bde6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;keyword.export&quot;: {
+        &quot;color&quot;: &quot;#91d7e3&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;punctuation&quot;: {
+        &quot;color&quot;: &quot;#939ab7&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;punctuation.delimiter&quot;: {
+        &quot;color&quot;: &quot;#939ab7&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;punctuation.bracket&quot;: {
+        &quot;color&quot;: &quot;#939ab7&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;punctuation.special&quot;: {
+        &quot;color&quot;: &quot;#f5bde6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;punctuation.special.symbol&quot;: {
+        &quot;color&quot;: &quot;#f0c6c6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;punctuation.list_marker&quot;: {
+        &quot;color&quot;: &quot;#8bd5ca&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;comment&quot;: {
+        &quot;color&quot;: &quot;#939ab7&quot;,
+        &quot;font_style&quot;: &quot;italic&quot;,
+        &quot;font_weight&quot;: null
+      },
+      &quot;comment.doc&quot;: {
+        &quot;color&quot;: &quot;#939ab7&quot;,
+        &quot;font_style&quot;: &quot;italic&quot;,
+        &quot;font_weight&quot;: null
+      },
+      &quot;comment.documentation&quot;: {
+        &quot;color&quot;: &quot;#939ab7&quot;,
+        &quot;font_style&quot;: &quot;italic&quot;,
+        &quot;font_weight&quot;: null
+      },
+      &quot;comment.error&quot;: {
+        &quot;color&quot;: &quot;#ed8796&quot;,
+        &quot;font_style&quot;: &quot;italic&quot;,
+        &quot;font_weight&quot;: null
+      },
+      &quot;comment.warning&quot;: {
+        &quot;color&quot;: &quot;#eed49f&quot;,
+        &quot;font_style&quot;: &quot;italic&quot;,
+        &quot;font_weight&quot;: null
+      },
+      &quot;comment.hint&quot;: {
+        &quot;color&quot;: &quot;#8aadf4&quot;,
+        &quot;font_style&quot;: &quot;italic&quot;,
+        &quot;font_weight&quot;: null
+      },
+      &quot;comment.todo&quot;: {
+        &quot;color&quot;: &quot;#f0c6c6&quot;,
+        &quot;font_style&quot;: &quot;italic&quot;,
+        &quot;font_weight&quot;: null
+      },
+      &quot;comment.note&quot;: {
+        &quot;color&quot;: &quot;#f4dbd6&quot;,
+        &quot;font_style&quot;: &quot;italic&quot;,
+        &quot;font_weight&quot;: null
+      },
+      &quot;diff.plus&quot;: {
+        &quot;color&quot;: &quot;#a6da95&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;diff.minus&quot;: {
+        &quot;color&quot;: &quot;#ed8796&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;tag&quot;: {
+        &quot;color&quot;: &quot;#8aadf4&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;tag.attribute&quot;: {
+        &quot;color&quot;: &quot;#eed49f&quot;,
+        &quot;font_style&quot;: &quot;italic&quot;,
+        &quot;font_weight&quot;: null
+      },
+      &quot;tag.delimiter&quot;: {
+        &quot;color&quot;: &quot;#8bd5ca&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;parameter&quot;: {
+        &quot;color&quot;: &quot;#ee99a0&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;field&quot;: {
+        &quot;color&quot;: &quot;#b7bdf8&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;namespace&quot;: {
+        &quot;color&quot;: &quot;#eed49f&quot;,
+        &quot;font_style&quot;: &quot;italic&quot;,
+        &quot;font_weight&quot;: null
+      },
+      &quot;float&quot;: {
+        &quot;color&quot;: &quot;#f5a97f&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;symbol&quot;: {
+        &quot;color&quot;: &quot;#f5bde6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;string.regex&quot;: {
+        &quot;color&quot;: &quot;#f5a97f&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;text&quot;: {
+        &quot;color&quot;: &quot;#cad3f5&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;emphasis.strong&quot;: {
+        &quot;color&quot;: &quot;#ee99a0&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: 700
+      },
+      &quot;emphasis&quot;: {
+        &quot;color&quot;: &quot;#ee99a0&quot;,
+        &quot;font_style&quot;: &quot;italic&quot;,
+        &quot;font_weight&quot;: null
+      },
+      &quot;embedded&quot;: {
+        &quot;color&quot;: &quot;#ee99a0&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;text.literal&quot;: {
+        &quot;color&quot;: &quot;#a6da95&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;concept&quot;: {
+        &quot;color&quot;: &quot;#7dc4e4&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;enum&quot;: {
+        &quot;color&quot;: &quot;#8bd5ca&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: 700
+      },
+      &quot;function.decorator&quot;: {
+        &quot;color&quot;: &quot;#f5a97f&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;type.class.definition&quot;: {
+        &quot;color&quot;: &quot;#eed49f&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: 700
+      },
+      &quot;hint&quot;: {
+        &quot;color&quot;: &quot;#5b6078&quot;,
+        &quot;font_style&quot;: &quot;italic&quot;,
+        &quot;font_weight&quot;: null
+      },
+      &quot;link_text&quot;: {
+        &quot;color&quot;: &quot;#8aadf4&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;link_uri&quot;: {
+        &quot;color&quot;: &quot;#f4dbd6&quot;,
+        &quot;font_style&quot;: &quot;italic&quot;,
+        &quot;font_weight&quot;: null
+      },
+      &quot;parent&quot;: {
+        &quot;color&quot;: &quot;#f5a97f&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;predictive&quot;: {
+        &quot;color&quot;: &quot;#6e738d&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;predoc&quot;: {
+        &quot;color&quot;: &quot;#ed8796&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;primary&quot;: {
+        &quot;color&quot;: &quot;#ee99a0&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;tag.doctype&quot;: {
+        &quot;color&quot;: &quot;#c6a0f6&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      },
+      &quot;string.doc&quot;: {
+        &quot;color&quot;: &quot;#8bd5ca&quot;,
+        &quot;font_style&quot;: &quot;italic&quot;,
+        &quot;font_weight&quot;: null
+      },
+      &quot;title&quot;: {
+        &quot;color&quot;: &quot;#cad3f5&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: 800
+      },
+      &quot;variant&quot;: {
+        &quot;color&quot;: &quot;#ed8796&quot;,
+        &quot;font_style&quot;: null,
+        &quot;font_weight&quot;: null
+      }
+    }
+  }
+}
+]
+}
+
+</code></pre>
+            </blockquote>
+        </article>
+        <script src="clipb.js"></script>
+        <script src="prismHL.js"></script>
+    </body>
+</html>
