@@ -20,6 +20,7 @@
     color: #7b98da;
     opacity: 0.6;
     font-size: large;
+    text-align: center;
 }
 
 .copy-button:hover {
@@ -28,6 +29,7 @@
     border-color: hidden;
     opacity: 0.9;
     font-size: x-large;
+    text-align: center;
 }
 
 /* SVG icon styles */
