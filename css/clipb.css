@@ -21,27 +21,30 @@
     opacity: 0.6;
     font-size: large;
     text-align: center;
+    cursor: pointer;
 }
 
 .copy-button:hover {
     transition: all 1s ease;
-    background: radial-gradient(#f5d49e 0%, #09090a 60%);
+    color: #f5d49e;
     border-color: hidden;
-    opacity: 0.9;
+    opacity: 1.0;
     font-size: x-large;
     text-align: center;
 }
 
 /* SVG icon styles */
 .copy-button svg {
-    width: 16px;
-    height: 16px;
-    stroke: #fff298;
-    opacity: 0.5;
+    width: 19px;
+    height: 19px;
+    stroke: #f5d49e;
+    opacity: 0.4;
 }
 
-.copy-button[svg]:hover {
-    opacity: 0.8;
+.copy-button>svg:hover {
+    opacity: 0.97;
+    stroke: #f5d49e;
+    fill: #f5d49e;
 }
 
 /* Tooltip styles */
@@ -91,21 +94,22 @@ pre {
 
 .language-label {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 15px;
+    right: 60px;
     background: #09090a;
-    padding: 4px 8px;
     font-size: 12px;
     font-family:
         Satoshi,
         Author,
         SF Pro Display;
     border-radius: 0 4px 0 4px;
-    opacity: 0.2;
-    color: #bbbbbb;
+    opacity: 0.4;
+    color: #f5d49e;
+    cursor: pointer;
 }
 
 .language-label:hover {
     opacity: 0.8;
-    color: #7b98da;
+    color: #f5d49e;
 }
+

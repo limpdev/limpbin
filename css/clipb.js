@@ -4,8 +4,9 @@ const ClipbModule = (() => {
   // Function to create and return the copy button
   const createCopyButton = () => {
     const copyButton = document.createElement("button");
-    copyButton.innerText = "📋";
+    const dBolt = "M4 14L14 3v7h6L10 21v-7z";
     copyButton.className = "copy-button";
+    copyButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="${dBolt}"/></svg>`;
     return copyButton;
   };
 
@@ -57,9 +58,20 @@ const ClipbModule = (() => {
       const textToCopy = codeBlock.innerText;
       navigator.clipboard.writeText(textToCopy).then(
         () => {
-          button.innerText = "📎";
+          const successSVG = `
+            <svg viewBox="0 0 24 24" width="1.5em" height="1.5em" fill="green">
+              <path d="M10 2a3 3 0 0 0-2.83 2H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3h-1.17A3 3 0 0 0 14 2zM9 5a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2h-4a1 1 0 0 1-1-1m6.78 6.625a1 1 0 1 0-1.56-1.25l-3.303 4.128l-1.21-1.21a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.488-.082l4-5z"></path>
+            </svg>
+          `;
+          button.innerHTML = successSVG; // Set success SVG
+
           setTimeout(() => {
-            button.innerText = "📋";
+            const defaultSVG = `
+              <svg viewBox="0 0 24 24" width="1.5em" height="1.5em" fill="currentColor">
+                <path d="M4 14L14 3v7h6L10 21v-7z"></path>
+              </svg>
+            `;
+            button.innerHTML = defaultSVG; // Revert to default SVG
           }, 2000);
         },
         (err) => {
@@ -68,7 +80,6 @@ const ClipbModule = (() => {
       );
     });
   };
-
   // Function to add copy buttons to all code blocks on the page
   const addCopyButtons = () => {
     const codeBlocks = document.querySelectorAll("pre code");
@@ -106,23 +117,6 @@ const ClipbModule = (() => {
   return { init };
 })();
 
-// Ensure that Prism.js has completed its initialization before running ClipbModule
-document.addEventListener("DOMContentLoaded", () => {
-  // Check if Prism is loaded
-  if (window.Prism) {
-    ClipbModule.init();
-  } else {
-    // Wait for Prism to load
-    const prismScript = document.querySelector('script[src*="prismHL.js"]');
-    if (prismScript) {
-      prismScript.addEventListener("load", ClipbModule.init);
-    } else {
-      console.error("Prism.js script not found. ClipbModule may not function correctly.");
-      ClipbModule.init(); // Attempt to initialize anyway
-    }
-  }
-});
-
 // Capture the code language specified in the pre-tags
 document.addEventListener("DOMContentLoaded", () => {
   const pres = document.querySelectorAll('pre[class^="language-"]');
@@ -139,13 +133,14 @@ document.addEventListener("DOMContentLoaded", () => {
       label.className = "language-label";
       label.textContent = language;
       // Wrap pre in container if not already wrapped
-      if (!pre.parentElement.classList.contains("code-container")) {
-        const container = document.createElement("div");
-        container.className = "code-container";
-        pre.parentNode.insertBefore(container, pre);
-        container.appendChild(pre);
+      if (!pre.parentElement.classList.contains("code-wrapper")) {
+        const wrapper = document.createElement("div");
+        wrapper.className = "code-wrapper";
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
       }
       pre.parentElement.appendChild(label);
     }
+    ClipbModule.init();
   });
 });

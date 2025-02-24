@@ -887,7 +887,7 @@ body {
 }
 
 .markdown-body pre code {
-    font-size: 90%;
+    font-size: 95%;
     padding-top: 0em;
     padding-bottom: 0.3em;
     padding-left: 0.3em;
@@ -916,7 +916,7 @@ body {
 .markdown-body pre {
     padding: 16px;
     overflow: auto;
-    font-size: 85%;
+    font-size: 80%;
     line-height: 1.45;
     color: var(--color-fg-default);
     background-color: var(--color-canvas-subtle);
@@ -926,7 +926,6 @@ body {
 .markdown-body pre code,
 .markdown-body pre tt {
     display: inline;
-    max-width: auto;
     padding: 0;
     margin: 0;
     overflow: visible;
