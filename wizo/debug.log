@@ -1,0 +1,6 @@
+debug 2025/02/24 10:22:59 question: what is your name?, answer: limpdev
+debug 2025/02/24 10:23:02 question: what is your favorite editor?, answer: vscode
+debug 2025/02/24 10:23:05 question: what is your favorite language?, answer: golang
+debug 2025/02/24 10:24:37 »question: what is your name?, »answer: faglet
+debug 2025/02/24 10:24:46 »question: what is your favorite editor?, »answer: emacs
+debug 2025/02/24 10:25:05 »question: what is your favorite language?, »answer: kotlin
