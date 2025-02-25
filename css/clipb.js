@@ -31,6 +31,7 @@ const ClipbModule = (() => {
       // Append the <pre> element to the wrapper
       wrapper.appendChild(preElement);
     } else {
+<<<<<<< HEAD
         return "";
     }
     //
@@ -50,6 +51,9 @@ const ClipbModule = (() => {
         }
       }
       return ""; // No language class found
+=======
+      return "";
+>>>>>>> f70c882 (Update modified files)
     }
 
     // Add event listener for copy functionality
@@ -75,7 +79,7 @@ const ClipbModule = (() => {
         },
         (err) => {
           console.error("Could not copy text: ", err);
-        },
+        }
       );
     });
   };
@@ -112,17 +116,17 @@ const ClipbModule = (() => {
     });
   };
 
-  // Public API
-  return { init };
+  // Public API - Return the init function
+  return { init: init }; // Return an object with the init function
 })();
 
-// Capture the code language specified in the pre-tags
+// Capture the code language specified in the pre-tags and initialize ClipbModule
 document.addEventListener("DOMContentLoaded", () => {
   const pres = document.querySelectorAll('pre[class^="language-"]');
   pres.forEach((pre) => {
     // Get the language from the class name
     const languageClass = Array.from(pre.classList).find((className) =>
-      className.startsWith("language-"),
+      className.startsWith("language-")
     );
     if (languageClass) {
       // Extract the language name (everything after 'language-')
@@ -140,6 +144,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       pre.parentElement.appendChild(label);
     }
-    ClipbModule.init();
   });
+  ClipbModule.init(); // Initialize ClipbModule *after* processing language labels
 });
