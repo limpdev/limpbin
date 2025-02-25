@@ -31,8 +31,7 @@ const ClipbModule = (() => {
       // Append the <pre> element to the wrapper
       wrapper.appendChild(preElement);
     } else {
-      // Handle cases where the <code> is not inside a <pre>
-      // For now, skip
+        return "";
     }
     //
 
