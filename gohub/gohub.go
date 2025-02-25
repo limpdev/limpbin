@@ -27,6 +27,7 @@ func main() {
 	mdNude := mdFileName[:len(mdFileName)-len(filepath.Ext(mdFileName))]
 
 	htmlDoc := fmt.Sprintf(`
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -40,10 +41,10 @@ func main() {
 <article class="markdown-body">
 %s
 </article>
-<script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clipb.js"></script>
 </body>
-</html>`,
-		mdNude, htmlContent)
+<script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clipb.js"></script>
+
+</html>`, mdNude, htmlContent)
 
 	outFile := mdNude + ".html"
 	err = os.WriteFile(outFile, []byte(htmlDoc), 0644)
