@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>golang-pdf</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/GithubAPI.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prismHL.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clipb.css" />
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prismHL.js"></script>
+    <article class="markdown-body">
+        <h1>Golang &amp; PDF</h1>
+        <p>Splitting a PDF of invoices into separate documents based on a common account name is a multi-step process. Here&rsquo;s a high-level overview of how you can approach this task in Go:</p>
+        <ol>
+            <li><strong>Extract Text from PDF</strong>: Use a library like <code>pdfcpu</code> or <code>pdf.js</code> to extract text from the PDF.</li>
+            <li><strong>Parse Invoices</strong>: Identify and parse the invoices from the extracted text.</li>
+            <li><strong>Group by Account Name</strong>: Group the invoices based on the common account name.</li>
+            <li><strong>Create Separate PDFs</strong>: Use a library like <code>gopdf</code> or <code>pdfcpu</code> to create separate PDFs for each group.</li>
+        </ol>
+        <p>Here&rsquo;s a basic example to get you started:</p>
+        <h3>Step 1: Install Required Libraries</h3>
+        <p>First, you need to install the necessary Go packages:</p>
+        <pre><code class="language-sh">go get github.com/pdfcpu/pdfcpu/pkg/api
+go get github.com/pdfcpu/pdfcpu/pkg/pdfcpu
+go get github.com/signintech/gopdf
+</code></pre>
+        <h3>Step 2: Write the Go Script</h3>
+        <p>Here&rsquo;s a basic example to illustrate the process:</p>
+        <pre><code class="language-go">package main
+
+import (
+	&quot;fmt&quot;
+	&quot;os&quot;
+	&quot;strings&quot;
+
+	&quot;github.com/pdfcpu/pdfcpu/pkg/api&quot;
+	&quot;github.com/pdfcpu/pdfcpu/pkg/pdfcpu&quot;
+	&quot;github.com/signintech/gopdf&quot;
+)
+
+func main() {
+	// Load the PDF file
+	pdfPath := &quot;invoices.pdf&quot;
+	pages, err := api.ExtractText(pdfPath, nil, pdfcpu.NewDefaultConfiguration())
+	if err != nil {
+		fmt.Println(&quot;Error extracting text:&quot;, err)
+		return
+	}
+
+	// Parse invoices and group by account name
+	invoices := parseInvoices(pages)
+	groupedInvoices := groupByAccountName(invoices)
+
+	// Create separate PDFs for each group
+	for accountName, invoicePages := range groupedInvoices {
+		outputPath := fmt.Sprintf(&quot;output_%s.pdf&quot;, strings.ReplaceAll(accountName, &quot; &quot;, &quot;_&quot;))
+		err := createPDF(outputPath, invoicePages)
+		if err != nil {
+			fmt.Printf(&quot;Error creating PDF for account %s: %v\n&quot;, accountName, err)
+		} else {
+			fmt.Printf(&quot;Created PDF for account %s: %s\n&quot;, accountName, outputPath)
+		}
+	}
+}
+
+func parseInvoices(pages []string) map[string][]string {
+	invoices := make(map[string][]string)
+	// Dummy implementation: Assume each page contains one invoice with an account name
+	for _, page := range pages {
+		// Extract account name (dummy logic)
+		accountName := extractAccountName(page)
+		invoices[accountName] = append(invoices[accountName], page)
+	}
+	return invoices
+}
+
+func extractAccountName(page string) string {
+	// Dummy implementation: Assume account name is the first word in the page
+	return strings.Split(page, &quot; &quot;)[0]
+}
+
+func groupByAccountName(invoices map[string][]string) map[string][]string {
+	return invoices
+}
+
+func createPDF(outputPath string, pages []string) error {
+	pdf := gopdf.GoPdf{}
+	pdf.Start(gopdf.Config{PageSize: *gopdf.PageSizeA4})
+
+	for _, page := range pages {
+		pdf.AddPage()
+		err := pdf.SetFont(&quot;Arial&quot;, &quot;&quot;, 12)
+		if err != nil {
+			return err
+		}
+		pdf.Cell(nil, page)
+	}
+
+	return pdf.WritePdf(outputPath)
+}
+</code></pre>
+        <h3>Explanation</h3>
+        <ol>
+            <li><strong>Extract Text</strong>: The <code>api.ExtractText</code> function from <code>pdfcpu</code> extracts text from each page of the PDF.</li>
+            <li><strong>Parse Invoices</strong>: The <code>parseInvoices</code> function groups pages by account name. This is a dummy implementation; you&rsquo;ll need to implement the logic to extract account names from the text.</li>
+            <li><strong>Group by Account Name</strong>: The <code>groupByAccountName</code> function simply returns the grouped invoices.</li>
+            <li><strong>Create Separate PDFs</strong>: The <code>createPDF</code> function creates a new PDF for each group of pages.</li>
+        </ol>
+        <h3>Next Steps</h3>
+        <ul>
+            <li><strong>Improve Text Extraction</strong>: The current implementation assumes that each page contains one invoice and the account name is the first word. You&rsquo;ll need to refine the <code>extractAccountName</code> function to accurately extract account names from the text.</li>
+            <li><strong>Handle Complex PDFs</strong>: If your PDFs are complex (e.g., multiple columns, tables), you may need to use more advanced text extraction techniques.</li>
+            <li><strong>Error Handling</strong>: Add more robust error handling as needed.</li>
+        </ul>
+        <p>This should give you a good starting point. Let me know if you need further assistance!</p>
+    </article>
+    <script src="clipb.js"></script>
+</body>
+
+</html>

@@ -4,7 +4,6 @@
 }
 
 .copy-button {
-    float: right;
     position: absolute;
     top: 8px;
     right: 8px;
@@ -13,24 +12,21 @@
     justify-content: center;
     padding: 6px;
     background: #09090a;
-    border: 0px solid #0d1117;
+    border: 1px solid #09090a;
     border-radius: 4px;
-    transition: all 1s ease;
-    z-index: 10;
     color: #7b98da;
     opacity: 0.6;
     font-size: large;
-    text-align: center;
     cursor: pointer;
+    z-index: 10;
+    transition: all 1s ease;
 }
 
 .copy-button:hover {
-    transition: all 1s ease;
     color: #f5d49e;
-    border-color: hidden;
+    border-color: transparent;
     opacity: 1.0;
     font-size: x-large;
-    text-align: center;
 }
 
 /* SVG icon styles */
@@ -39,19 +35,17 @@
     height: 19px;
     stroke: #f5d49e;
     opacity: 0.4;
+    transition: all 0.5s ease;
+    transform-origin: center;
 }
 
-.copy-button>svg:hover {
+.copy-button:hover svg {
     opacity: 0.97;
-    stroke: #f5d49e;
     fill: #f5d49e;
+    transform: scale(1.25);
 }
 
 /* Tooltip styles */
-.copy-button[data-tooltip] {
-    position: relative;
-}
-
 .copy-button[data-tooltip]::before {
     content: attr(data-tooltip);
     position: absolute;
@@ -82,7 +76,6 @@
 
 .copy-button.copied svg {
     stroke: #b5f700;
-    transition: all 0.6s ease;
 }
 
 /* Ensure pre tags have relative positioning for button placement */
@@ -98,10 +91,7 @@ pre {
     right: 60px;
     background: #09090a;
     font-size: 12px;
-    font-family:
-        Satoshi,
-        Author,
-        SF Pro Display;
+    font-family: Satoshi, Author, "SF Pro Display";
     border-radius: 0 4px 0 4px;
     opacity: 0.4;
     color: #f5d49e;
@@ -110,6 +100,4 @@ pre {
 
 .language-label:hover {
     opacity: 0.8;
-    color: #f5d49e;
 }
-

@@ -116,33 +116,3 @@ const ClipbModule = (() => {
 if (typeof window !== "undefined") {
     window.addEventListener("DOMContentLoaded", ClipbModule.init);
 }
-
-export default ClipbModule;
-
-// Capture the code language specified in the pre-tags and initialize ClipbModule
-document.addEventListener("DOMContentLoaded", () => {
-  const pres = document.querySelectorAll('pre[class^="language-"]');
-  pres.forEach((pre) => {
-    // Get the language from the class name
-    const languageClass = Array.from(pre.classList).find((className) =>
-      className.startsWith("language-")
-    );
-    if (languageClass) {
-      // Extract the language name (everything after 'language-')
-      const language = languageClass.split("-")[1];
-      // Create and insert the language label
-      const label = document.createElement("div");
-      label.className = "language-label";
-      label.textContent = language;
-      // Wrap pre in container if not already wrapped
-      if (!pre.parentElement.classList.contains("code-wrapper")) {
-        const wrapper = document.createElement("div");
-        wrapper.className = "code-wrapper";
-        pre.parentNode.insertBefore(wrapper, pre);
-        wrapper.appendChild(pre);
-      }
-      pre.parentElement.appendChild(label);
-    }
-  });
-  ClipbModule.init(); // Initialize ClipbModule *after* processing language labels
-});
