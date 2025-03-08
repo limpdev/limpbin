@@ -104,7 +104,7 @@ func (m *model) Next() {
 
 func main() {
 	questions := []Question{
-		NewQuestion("what is your name?"),
+		NewQuestion("Paste the link you want to scrape:"),
 		NewQuestion("what is your favorite editor?"),
 		NewQuestion("what is your favorite language?"),
 	}
