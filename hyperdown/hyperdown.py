@@ -12,6 +12,7 @@ class DocConverter:
         self.converter.body_width = 0  # Disable text wrapping
         self.converter.ignore_images = False
         self.converter.ignore_links = False
+        self.converter.mark_code = True
         
     def fix_relative_links(self, content, file_path):
         """
@@ -62,7 +63,19 @@ class DocConverter:
         # Write the markdown file
         with open(md_path, 'w', encoding='utf-8') as f:
             f.write(markdown)
-            
+
+        # Read in the file
+        with open(md_path, 'r') as file:
+            preMark = file.read()
+
+        # Replace the target string
+        preMark = preMark.replace('[code]', '```')
+        preMark = preMark.replace('[/code]', '```')
+
+        # Write the file out again
+        with open(md_path, 'w') as file:
+            file.write(preMark)
+
         return md_path
     
     def convert_directory(self):
