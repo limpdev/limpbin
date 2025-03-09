@@ -45,7 +45,7 @@ class DocConverter:
         """
         Convert a single HTML file to Markdown
         """
-        with open(html_path, 'r', encoding='utf-8') as f:
+        with open(html_path, 'r', encoding='utf-8', errors='ignore') as f:
             content = f.read()
             
         # Fix relative links before conversion
@@ -61,11 +61,11 @@ class DocConverter:
         md_path.parent.mkdir(parents=True, exist_ok=True)
         
         # Write the markdown file
-        with open(md_path, 'w', encoding='utf-8') as f:
+        with open(md_path, 'w', encoding='utf-8', errors='ignore') as f:
             f.write(markdown)
 
         # Read in the file
-        with open(md_path, 'r') as file:
+        with open(md_path, 'r', encoding='utf-8', errors='ignore') as file:
             preMark = file.read()
 
         # Replace the target string
@@ -73,7 +73,7 @@ class DocConverter:
         preMark = preMark.replace('[/code]', '```')
 
         # Write the file out again
-        with open(md_path, 'w') as file:
+        with open(md_path, 'w', encoding='utf-8', errors='ignore') as file:
             file.write(preMark)
 
         return md_path
