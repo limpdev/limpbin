@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"os/exec"
@@ -17,10 +18,12 @@ func main() {
 }
 
 func Converter() {
-	if len(os.Args) < 3 {
-		fmt.Println("Usage: moka <URL> <NAME.md>")
+	if len(os.Args) < 2 {
+		fmt.Println("Usage: moka <URL> [NAME.md]")
+		fmt.Println("If NAME.md is not provided, output will be written to stdout")
 		os.Exit(1)
 	}
+
 	input := os.Args[1]
 	cmdCurl := exec.Command("curl", "--no-progress-meter", input)
 	output, err := cmdCurl.CombinedOutput()
@@ -53,10 +56,20 @@ func Converter() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	mdFile := os.Args[2]
-	err = os.WriteFile(mdFile, []byte(markdown), 0644)
-	if err != nil {
-		log.Fatal(err)
+
+	// Write to file if a filename is provided, otherwise write to stdout
+	if len(os.Args) >= 3 {
+		mdFile := os.Args[2]
+		err = os.WriteFile(mdFile, []byte(markdown), 0644)
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println("Done")
+	} else {
+		// Write to stdout
+		_, err = io.WriteString(os.Stdout, markdown)
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
-	fmt.Println("Done")
 }
