@@ -22,7 +22,7 @@ func Converter() {
 		os.Exit(1)
 	}
 	input := os.Args[1]
-	cmdCurl := exec.Command("curl", input)
+	cmdCurl := exec.Command("curl", "--no-progress-meter", input)
 	output, err := cmdCurl.CombinedOutput()
 	if err != nil {
 		log.Fatalf("Error during the CURL process:\n%s", err)
