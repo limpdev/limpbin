@@ -4,6 +4,11 @@
         format("woff");
 }
 
+i[class^="devicon-"] {
+    font-size: 23px;
+    color: #dddddd !important;
+}
+
 @media (prefers-color-scheme: dark) {
     body,
     [data-theme="dark"] {
