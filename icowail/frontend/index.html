@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>theGallery</title>
+        <style>
+            body {
+                display: block;
+                color: white;
+                font-family: Satoshi, 'Segoe UI', Roboto, sans-serif;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #0d1117;
+            }
+
+            h1 {
+                font-family: 'Arsenal SC';
+                text-align: center;
+                margin-bottom: 30px;
+                color: #91C8FF;
+            }
+
+            svg {
+                display: block;
+                margin: 0 auto;
+                fill: #dddddd;
+                transition: 0.8s ease;
+                opacity: 0.75;
+            }
+
+            svg:hover {
+                transform: scale(1.25);
+                opacity: 1;
+            }
+
+            .gallery {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+                margin-top: 20px;
+            }
+
+            .icon-wrapper {
+                position: relative;
+                overflow: hidden;
+                padding: 20px;
+                justify-content: center;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                transition: transform 0.2s, box-shadow 0.2s;
+                cursor: pointer;
+                background: #09090a;
+                border-radius: 14px;
+            }
+
+            .ripple {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(62, 62, 62, 0.3);
+                transform: scale(0);
+                animation: ripple 1.5s;
+                pointer-events: none;
+            }
+
+            @keyframes ripple {
+                from {
+                    transform: scale(0);
+                    opacity: 1;
+                }
+
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+
+            .icon-wrapper:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            }
+
+            .icon-wrapper svg {
+                width: 42px;
+                height: 42px;
+            }
+
+            .icon-name {
+                display: none;
+                font-size: 14px;
+                color: #555;
+                text-align: center;
+                word-break: break-word;
+            }
+
+            #codeCopied {
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: #367E39;
+                color: white;
+                padding: 10px;
+                border-radius: 12px;
+                opacity: 0;
+                transition: opacity 0.9s ease;
+            }
+
+            #codeCopied.show {
+                opacity: 0.75;
+            }
+
+            .pagination {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .hidden {
+                display: none;
+            }
+            
+        </style>
+    </head>
+
+    <body>
+        <h1>theGallery</h1>
+        <p style="text-align: center;">SVG Icon Gallery - Click any icon to copy its SVG code</p>
+        <div id="gallery" class="gallery">
+            <div id="app"></div>
+            <script src="./src/app.js" type="module"></script>
+        </div>
+        <div class="pagination">
+            <button id="prev" disabled>Previous</button>
+            <span id="page-info"></span>
+            <button id="next">Next</button>
+        </div>
+        <div id="codeCopied" class="code-copied-message">Copied</div>
+    </body>
+
+</html>
