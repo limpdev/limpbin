@@ -33,7 +33,7 @@ func main() {
 <head>
 <meta charset="UTF-8">
 <title>%s</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/limpdev/devicon@latest/devicon.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/limpdev/devicon@master/devicon.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/GithubAPI.css"/>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prismHL.css"/>
 <link rel="stylesheet"type="text/css"href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clipb.css"/>
