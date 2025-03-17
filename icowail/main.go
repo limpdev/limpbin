@@ -15,6 +15,8 @@ import (
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
+	"github.com/wailsapp/wails/v2/pkg/options/mac"
+	"github.com/wailsapp/wails/v2/pkg/options/windows"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
@@ -214,6 +216,14 @@ func (a *App) DebugListDirectory() string {
 	return result.String()
 }
 
+// In your main.go or app.go file
+func (a *App) Quit(ctx context.Context) {
+	if a.watcher != nil {
+		a.watcher.Close()
+	}
+	runtime.Quit(ctx)
+}
+
 func main() {
 	// Default to a directory in the current working directory
 	svgDir := "./svg"
@@ -230,19 +240,35 @@ func main() {
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:  "theGallery",
-		Width:  1024,
-		Height: 1024,
+		Title:     "Icons n' Wails",
+		Width:     1024,
+		Height:    1024,
+		MinWidth:  750,
+		MinHeight: 750,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
-		BackgroundColour: &options.RGBA{R: 13, G: 17, B: 23, A: 1},
-		OnStartup:        app.startup,
+		Frameless:                true,
+		CSSDragProperty:          "widows",
+		CSSDragValue:             "1",
+		BackgroundColour:         &options.RGBA{R: 18, G: 18, B: 18, A: 120},
+		OnStartup:                app.startup,
+		OnShutdown:               app.Quit,
+		EnableDefaultContextMenu: true,
 		Bind: []interface{}{
 			app,
 		},
 		Debug: options.Debug{
 			OpenInspectorOnStartup: false,
+		},
+		Windows: &windows.Options{
+			WebviewIsTransparent: true,
+			WindowIsTranslucent:  false,
+			DisablePinchZoom:     true,
+		},
+		Mac: &mac.Options{
+			WebviewIsTransparent: true,
+			WindowIsTranslucent:  false,
 		},
 	})
 
