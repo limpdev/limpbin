@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 128 128"
+   version="1.1"
+   id="svg13"
+   sodipodi:docname="devicon-kotlin-origina.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview15"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <defs
+     id="defs9">
+    <linearGradient
+       id="a"
+       x1="500.003"
+       x2="-.097"
+       y1="579.106"
+       y2="1079.206"
+       gradientTransform="translate(15.534 -96.774) scale(.1939)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset=".003"
+         stop-color="#e44857"
+         id="stop2" />
+      <stop
+         offset=".469"
+         stop-color="#c711e1"
+         id="stop4" />
+      <stop
+         offset="1"
+         stop-color="#7f52ff"
+         id="stop6" />
+    </linearGradient>
+  </defs>
+  <path
+     fill="url(#a)"
+     d="M112.484 112.484H15.516V15.516h96.968L64 64Zm0 0"
+     id="path11" />
+</svg>

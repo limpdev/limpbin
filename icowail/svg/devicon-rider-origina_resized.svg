@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 128 128"
+   version="1.1"
+   id="svg31"
+   sodipodi:docname="devicon-rider-origina.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs35" />
+  <sodipodi:namedview
+     id="namedview33"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <linearGradient
+     id="a"
+     x1="94.33"
+     x2="20.33"
+     y1="59.37"
+     y2="16.91"
+     gradientUnits="userSpaceOnUse">
+    <stop
+       offset="0"
+       stop-color="#dd1265"
+       id="stop2" />
+    <stop
+       offset=".48"
+       stop-color="#dd1265"
+       id="stop4" />
+    <stop
+       offset=".94"
+       stop-color="#fdb60d"
+       id="stop6" />
+  </linearGradient>
+  <linearGradient
+     id="b"
+     x1="50.33"
+     x2="79.66"
+     y1="12.76"
+     y2="93.76"
+     gradientUnits="userSpaceOnUse">
+    <stop
+       offset=".14"
+       stop-color="#087cfa"
+       id="stop9" />
+    <stop
+       offset=".48"
+       stop-color="#dd1265"
+       id="stop11" />
+    <stop
+       offset=".96"
+       stop-color="#087cfa"
+       id="stop13" />
+  </linearGradient>
+  <linearGradient
+     id="c"
+     x1="28.36"
+     x2="50.02"
+     y1="15.26"
+     y2="92.26"
+     gradientUnits="userSpaceOnUse">
+    <stop
+       offset=".28"
+       stop-color="#dd1265"
+       id="stop16" />
+    <stop
+       offset=".97"
+       stop-color="#fdb60d"
+       id="stop18" />
+  </linearGradient>
+  <path
+     fill="url(#a)"
+     d="M122.514 50.871 40.472 5.339l54.93 81.615 11.288-7.4z"
+     id="path21" />
+  <path
+     fill="url(#b)"
+     d="M89.783 32.305 79.506 7.18 56.771 29.562l9.301 81.213L88.1 122.368l34.414-20.102z"
+     id="path23" />
+  <path
+     fill="url(#c)"
+     d="M40.472 5.339 5.486 28.904l13.007 80.372 33.548 12.898 43.362-35.218z"
+     id="path25" />
+  <path
+     d="M27.429 27.429h73.143v73.143H27.429z"
+     id="path27" />
+  <path
+     fill="#fff"
+     d="M36.547 86.747h27.429v4.571H36.547zm.024-50.273h12.556a10.971 10.971 0 0 1 8.009 2.792 8.631 8.631 0 0 1 2.365 6.29v.073a8.533 8.533 0 0 1-5.9 8.533l6.729 9.826h-7.083l-5.888-8.802h-4.692v8.802h-6.095zm12.19 13.41c2.95 0 4.645-1.573 4.645-3.889v-.073c0-2.597-1.804-3.938-4.754-3.938h-5.985v7.899zm15.762-13.41h10.728c8.643 0 14.629 5.937 14.629 13.678v.085c0 7.741-5.973 13.751-14.629 13.751H64.523zm6.095 5.461v16.579h4.681a7.838 7.838 0 0 0 8.29-8.216v-.073a7.912 7.912 0 0 0-8.29-8.302z"
+     id="path29" />
+</svg>

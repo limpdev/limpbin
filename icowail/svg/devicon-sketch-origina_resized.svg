@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 128 128"
+   version="1.1"
+   id="svg16"
+   sodipodi:docname="devicon-sketch-origina.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs20" />
+  <sodipodi:namedview
+     id="namedview18"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <path
+     fill="#fdb300"
+     d="M27.93 10.334 64 6.547l36.07 3.788L128 47.517l-64 73.936L0 47.517Z"
+     id="path2" />
+  <path
+     fill="#ea6c00"
+     d="M25.925 47.517 64 121.453 0 47.517Zm76.15 0L64 121.453l64-73.936Z"
+     id="path4" />
+  <path
+     fill="#fdad00"
+     d="M25.925 47.517h76.15L64 121.453Z"
+     id="path6" />
+  <path
+     fill="#fdd231"
+     d="m64 6.547-36.07 3.787-2.005 37.183Zm0 0 36.07 3.787 2.005 37.183z"
+     id="path8" />
+  <path
+     fill="#fdad00"
+     d="m128 47.517-27.93-37.183 2.005 37.183z"
+     id="path10" />
+  <path
+     fill="#feeeb7"
+     d="m64 6.547-38.075 40.97h76.15z"
+     id="path12" />
+  <path
+     fill="#fdad00"
+     d="m0 47.517 27.93-37.183-2.005 37.183Z"
+     id="path14" />
+</svg>
