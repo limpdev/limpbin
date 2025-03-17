@@ -1,15 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>theGallery</title>
         <style>
             body {
                 display: block;
                 color: white;
-                font-family: Satoshi, 'Segoe UI', Roboto, sans-serif;
+                font-family: Satoshi, "Segoe UI", Roboto, sans-serif;
                 max-width: 1200px;
                 margin: 0 auto;
                 padding: 20px;
@@ -17,10 +16,10 @@
             }
 
             h1 {
-                font-family: 'Arsenal SC';
+                font-family: "Arsenal SC";
                 text-align: center;
                 margin-bottom: 30px;
-                color: #91C8FF;
+                color: #91c8ff;
             }
 
             svg {
@@ -50,7 +49,9 @@
                 padding: 20px;
                 justify-content: center;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                transition: transform 0.2s, box-shadow 0.2s;
+                transition:
+                    transform 0.2s,
+                    box-shadow 0.2s;
                 cursor: pointer;
                 background: #09090a;
                 border-radius: 14px;
@@ -100,7 +101,7 @@
                 top: 20px;
                 left: 50%;
                 transform: translateX(-50%);
-                background-color: #367E39;
+                background-color: #367e39;
                 color: white;
                 padding: 10px;
                 border-radius: 12px;
@@ -120,13 +121,12 @@
             .hidden {
                 display: none;
             }
-            
         </style>
     </head>
 
     <body>
         <h1>theGallery</h1>
-        <p style="text-align: center;">SVG Icon Gallery - Click any icon to copy its SVG code</p>
+        <p style="text-align: center">SVG Icon Gallery - Click any icon to copy its SVG code</p>
         <div id="gallery" class="gallery">
             <div id="app"></div>
             <script src="./src/app.js" type="module"></script>
@@ -138,5 +138,4 @@
         </div>
         <div id="codeCopied" class="code-copied-message">Copied</div>
     </body>
-
 </html>
