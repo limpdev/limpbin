@@ -1,7 +1,7 @@
 // frontend/src/app.js
 // Connect to Go backend
-import {GetSvgFiles, GetSvgContent, GetIconName} from '../wailsjs/go/main/App';
-import {EventsOn, LogInfo, LogError} from '../wailsjs/runtime/runtime';
+import { GetSvgFiles, GetSvgContent, GetIconName } from '../wailsjs/go/main/App';
+import { EventsOn, LogInfo, LogError } from '../wailsjs/runtime/runtime';
 
 // DOM elements
 let gallery;
@@ -11,7 +11,7 @@ let codeCopiedMessage;
 function initDOM() {
     gallery = document.getElementById('gallery');
     codeCopiedMessage = document.getElementById('codeCopied');
-    
+
     if (!gallery) {
         LogError("Gallery element not found!");
         // Create it if missing
@@ -20,7 +20,7 @@ function initDOM() {
         gallery.className = 'gallery';
         document.body.appendChild(gallery);
     }
-    
+
     if (!codeCopiedMessage) {
         LogError("CodeCopied element not found!");
         // Create it if missing
@@ -38,40 +38,40 @@ async function updateGallery() {
         LogInfo("Updating gallery...");
         const files = await GetSvgFiles();
         LogInfo(`Found ${files.length} SVG files`);
-        
+
         if (!gallery) {
             LogError("Gallery element is null, reinitializing DOM");
             initDOM();
         }
-        
+
         gallery.innerHTML = '';
-        
+
         if (files.length === 0) {
             LogInfo("No SVG files found");
             gallery.innerHTML = '<div class="no-files">No SVG files found. Add some .svg files to your directory.</div>';
             return;
         }
-        
+
         for (const file of files) {
             try {
                 const iconName = await GetIconName(file);
                 const svgContent = await GetSvgContent(file);
-                
+
                 if (!svgContent) {
                     LogError(`Empty SVG content for ${file}`);
                     continue;
                 }
-                
+
                 const iconWrapper = document.createElement('div');
                 iconWrapper.className = 'icon-wrapper';
                 iconWrapper.innerHTML = `
                     ${svgContent}
                     <div class="icon-name">${iconName}</div>
                 `;
-                
-                iconWrapper.addEventListener('click', function(event) {
+
+                iconWrapper.addEventListener('click', function (event) {
                     copySvgCode(this, svgContent);
-                    
+
                     // Add ripple effect
                     const ripple = document.createElement('span');
                     ripple.classList.add('ripple');
@@ -81,10 +81,10 @@ async function updateGallery() {
                     ripple.style.left = `${event.clientX - rect.left - size / 2}px`;
                     ripple.style.top = `${event.clientY - rect.top - size / 2}px`;
                     this.appendChild(ripple);
-                    
+
                     setTimeout(() => ripple.remove(), 1500);
                 });
-                
+
                 gallery.appendChild(iconWrapper);
             } catch (fileErr) {
                 LogError(`Error processing file ${file}: ${fileErr}`);
@@ -145,33 +145,48 @@ window.runtime = {
 };
 
 const iconsPerPage = 100; // Adjust based on your preference
-  const icons = document.querySelectorAll(".icon-wrapper");
-  let currentPage = 1;
-  const totalPages = Math.ceil(icons.length / iconsPerPage);
+const icons = document.querySelectorAll(".icon-wrapper");
+let currentPage = 1;
+const totalPages = Math.ceil(icons.length / iconsPerPage);
 
-  function showPage(page) {
-      icons.forEach((icon, index) => {
-          icon.classList.toggle("hidden", index < (page - 1) * iconsPerPage || index >= page * iconsPerPage);
-      });
+function showPage(page) {
+    icons.forEach((icon, index) => {
+        icon.classList.toggle("hidden", index < (page - 1) * iconsPerPage || index >= page * iconsPerPage);
+    });
 
-      document.getElementById("page-info").textContent = `Page ${page} of ${totalPages}`;
-      document.getElementById("prev").disabled = page === 1;
-      document.getElementById("next").disabled = page === totalPages;
-  }
+    document.getElementById("page-info").textContent = `Page ${page} of ${totalPages}`;
+    document.getElementById("prev").disabled = page === 1;
+    document.getElementById("next").disabled = page === totalPages;
+}
 
-  document.getElementById("prev").addEventListener("click", () => {
-      if (currentPage > 1) {
-          currentPage--;
-          showPage(currentPage);
-      }
-  });
+document.getElementById("prev").addEventListener("click", () => {
+    if (currentPage > 1) {
+        currentPage--;
+        showPage(currentPage);
+    }
+});
 
-  document.getElementById("next").addEventListener("click", () => {
-      if (currentPage < totalPages) {
-          currentPage++;
-          showPage(currentPage);
-      }
-  });
+document.getElementById("next").addEventListener("click", () => {
+    if (currentPage < totalPages) {
+        currentPage++;
+        showPage(currentPage);
+    }
+});
 
-  // Initial display
-  showPage(currentPage);
+// Initial display
+showPage(currentPage);
+
+// Modified JavaScript for Wails integration
+closeButton.addEventListener('click', function() {
+    const app = document.getElementById('app')
+    // Animation effect before closing
+    app.style.transition = 'opacity 0.3s, transform 0.3s';
+    app.style.opacity = '0';
+    app.style.transform = 'scale(0.95)';
+    
+    // Call Go function after animation completes
+    setTimeout(() => {
+        // This calls your Go function
+        runtime.Quit();
+    }, 300);
+});

@@ -18,7 +18,7 @@ h1 {
 svg {
     display: block;
     margin: 0 auto;
-    fill: offwhite;
+    fill: #d1d1d1;
     transition: 0.8s ease;
     opacity: 0.75;
 }
