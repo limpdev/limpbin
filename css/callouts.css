@@ -1,0 +1,64 @@
+/* Base callout styling */
+.callout {
+  padding: 0;
+  margin-bottom: 16px;
+  border-left: 4px solid #d0d7de;
+  border-radius: 3px;
+  background-color: #f6f8fa;
+  overflow: hidden;
+}
+
+.callout-header {
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+
+.callout-icon {
+  margin-right: 8px;
+}
+
+.callout-content {
+  padding: 0 16px 16px;
+}
+
+.callout-content p {
+  margin: 0;
+}
+
+/* Specific callout types */
+.callout-note {
+  border-left-color: #0969da;
+}
+.callout-note .callout-header {
+  color: #0969da;
+}
+
+.callout-tip {
+  border-left-color: #1a7f37;
+}
+.callout-tip .callout-header {
+  color: #1a7f37;
+}
+
+.callout-important {
+  border-left-color: #8250df;
+}
+.callout-important .callout-header {
+  color: #8250df;
+}
+
+.callout-warning {
+  border-left-color: #9a6700;
+}
+.callout-warning .callout-header {
+  color: #9a6700;
+}
+
+.callout-caution {
+  border-left-color: #cf222e;
+}
+.callout-caution .callout-header {
+  color: #cf222e;
+}
