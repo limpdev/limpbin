@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/russross/blackfriday/v2"
 )
@@ -16,42 +17,34 @@ func main() {
 
 	mdFile := os.Args[1]
 
+	// Read markdown file
 	mdContent, err := os.ReadFile(mdFile)
 	if err != nil {
-		fmt.Printf("Could not read: %s", err)
+		fmt.Printf("Could not read markdown file: %s\n", err)
 		return
 	}
 
-	htmlContent := blackfriday.Run(mdContent)
+	// Generate the filename
 	mdFileName := filepath.Base(mdFile)
 	mdNude := mdFileName[:len(mdFileName)-len(filepath.Ext(mdFileName))]
-
-	htmlDoc := fmt.Sprintf(`
-<!DOCTYPE html>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>%s</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/limpdev/devicon@master/devicon.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/GithubAPI.css"/>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prismHL.css"/>
-<link rel="stylesheet"type="text/css"href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clipb.css"/>
-<link rel="stylesheet"type="text/css"href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/callouts.css"/>
-</head>
-<body>
-<script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prismHL.js"></script>
-<article class="markdown-body">
-%s
-</article>
-<script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clipb.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/callouts.js"></script>
-</body>
-
-</html>`, mdNude, htmlContent)
-
 	outFile := mdNude + ".html"
+	// Convert markdown to HTML
+	htmlContent := blackfriday.Run(mdContent)
+
+	// Read the template HTML file
+	templatePath := "index.html"
+	templateContent, err := os.ReadFile(templatePath)
+	if err != nil {
+		fmt.Printf("Could not read template file %s: %s\n", templatePath, err)
+		return
+	}
+
+	// Replace a placeholder in the template with the converted HTML content
+	// Assuming index.html contains a {{CONTENT}} placeholder
+	htmlPre := strings.Replace(string(templateContent), "{{TITLE}}", string(mdNude), 1)
+	htmlDoc := strings.Replace(string(htmlPre), "{{CONTENT}}", string(htmlContent), 1)
+
+	// Write the final HTML to the output file
 	err = os.WriteFile(outFile, []byte(htmlDoc), 0644)
 	if err != nil {
 		fmt.Printf("Error writing the output HTML file %s: %v\n", outFile, err)
