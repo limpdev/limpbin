@@ -34,9 +34,11 @@ func main() {
 <meta charset="UTF-8">
 <title>%s</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/limpdev/devicon@master/devicon.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/GithubAPI.css"/>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prismHL.css"/>
 <link rel="stylesheet"type="text/css"href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clipb.css"/>
+<link rel="stylesheet"type="text/css"href="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/callouts.css"/>
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/prismHL.js"></script>
@@ -44,6 +46,7 @@ func main() {
 %s
 </article>
 <script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/clipb.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/limpdev/limpbin@main/css/callouts.js"></script>
 </body>
 
 </html>`, mdNude, htmlContent)
