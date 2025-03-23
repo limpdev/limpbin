@@ -242,16 +242,18 @@ func main() {
 	err := wails.Run(&options.App{
 		Title:     "Icons n' Wails",
 		Width:     1024,
-		Height:    1024,
-		MinWidth:  750,
-		MinHeight: 750,
+		Height:    950,
+		MinWidth:  1024,
+		MinHeight: 950,
+		MaxWidth:  1024,
+		MaxHeight: 950,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
 		Frameless:                true,
 		CSSDragProperty:          "widows",
 		CSSDragValue:             "1",
-		BackgroundColour:         &options.RGBA{R: 18, G: 18, B: 18, A: 120},
+		BackgroundColour:         &options.RGBA{R: 8, G: 8, B: 8, A: 30},
 		OnStartup:                app.startup,
 		OnShutdown:               app.Quit,
 		EnableDefaultContextMenu: true,
@@ -263,12 +265,13 @@ func main() {
 		},
 		Windows: &windows.Options{
 			WebviewIsTransparent: true,
-			WindowIsTranslucent:  false,
+			WindowIsTranslucent:  true,
 			DisablePinchZoom:     true,
+			BackdropType:         windows.Acrylic,
 		},
 		Mac: &mac.Options{
 			WebviewIsTransparent: true,
-			WindowIsTranslucent:  false,
+			WindowIsTranslucent:  true,
 		},
 	})
 

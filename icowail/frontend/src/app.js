@@ -144,38 +144,6 @@ window.runtime = {
     }
 };
 
-const iconsPerPage = 100; // Adjust based on your preference
-const icons = document.querySelectorAll(".icon-wrapper");
-let currentPage = 1;
-const totalPages = Math.ceil(icons.length / iconsPerPage);
-
-function showPage(page) {
-    icons.forEach((icon, index) => {
-        icon.classList.toggle("hidden", index < (page - 1) * iconsPerPage || index >= page * iconsPerPage);
-    });
-
-    document.getElementById("page-info").textContent = `Page ${page} of ${totalPages}`;
-    document.getElementById("prev").disabled = page === 1;
-    document.getElementById("next").disabled = page === totalPages;
-}
-
-document.getElementById("prev").addEventListener("click", () => {
-    if (currentPage > 1) {
-        currentPage--;
-        showPage(currentPage);
-    }
-});
-
-document.getElementById("next").addEventListener("click", () => {
-    if (currentPage < totalPages) {
-        currentPage++;
-        showPage(currentPage);
-    }
-});
-
-// Initial display
-showPage(currentPage);
-
 // Modified JavaScript for Wails integration
 closeButton.addEventListener('click', function() {
     const app = document.getElementById('app')
