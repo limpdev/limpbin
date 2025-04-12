@@ -253,7 +253,7 @@ func main() {
 		Frameless:                true,
 		CSSDragProperty:          "widows",
 		CSSDragValue:             "1",
-		BackgroundColour:         &options.RGBA{R: 8, G: 8, B: 8, A: 30},
+		BackgroundColour:         &options.RGBA{R: 8, G: 8, B: 8, A: 0},
 		OnStartup:                app.startup,
 		OnShutdown:               app.Quit,
 		EnableDefaultContextMenu: true,
@@ -271,7 +271,7 @@ func main() {
 		},
 		Mac: &mac.Options{
 			WebviewIsTransparent: true,
-			WindowIsTranslucent:  true,
+			WindowIsTranslucent:  false,
 		},
 	})
 
