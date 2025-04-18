@@ -1,0 +1,12 @@
+goplunk/
+├── cmd/
+│   └── goplunk/
+│       └── main.go         # Entry point
+├── internal/
+│   ├── config/             # Configuration management
+│   ├── input/              # Input handling (Windows hooks)
+│   ├── renderer/           # Graphics rendering
+│   ├── animation/          # Animation logic
+│   └── app/                # Application core
+├── go.mod
+└── go.sum
