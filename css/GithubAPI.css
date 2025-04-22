@@ -3,6 +3,17 @@
 @import "./ClipB.css/";
 @import "./Extras.css/"
 
+::selection {
+    background-color: #91919130; /* Change to your preferred color */
+    /* color: #000000; Text color when highlighted */
+}
+
+::-moz-selection {
+    /* Firefox requires its own rule */
+    background-color: #91919130;
+    /* color: #000000; */
+}
+
 .markdown-body {
     --base-size-4: 0.25rem;
     --base-size-8: 0.5rem;
