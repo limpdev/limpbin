@@ -1,61 +1,30 @@
 @import "https://www.nerdfonts.com/assets/css/webfont.css";
-@import "./Callouts.css/";
-@import "./ClipB.css/";
-@import "./Extras.css/"
 
-.markdown-body {
-    --base-size-4: 0.25rem;
-    --base-size-8: 0.5rem;
-    --base-size-16: 1rem;
-    --base-size-24: 1.5rem;
-    --base-size-40: 2.5rem;
-    --base-text-weight-normal: 400;
-    --base-text-weight-medium: 500;
-    --base-text-weight-semibold: 600;
-    --fontStack-monospace: "RedditMono Nerd Font", "UbuntuSansM NFM", Menlo, Liberation Mono, monospace;
-    --fgColor-accent: Highlight;
+@font-face {
+    font-family: octicons-link;
+    src: url(data:font/woff;charset=utf-8;base64,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)
+        format("woff");
 }
 
 i[class^="devicon-"] {
-    font-size: 2rem;
+    font-size: 23px;
+    color: #dddddd !important;
 }
 
 @media (prefers-color-scheme: dark) {
-    .markdown-body,
+    body,
     [data-theme="dark"] {
-        /* dark */
+        /*dark*/
         color-scheme: dark;
-        --focus-outlineColor: #1f6feb;
-        --fgColor-default: #f0f6fc;
-        --fgColor-muted: #9198a1;
-        --fgColor-accent: #4493f8;
-        --fgColor-success: #3fb950;
-        --fgColor-attention: #d29922;
-        --fgColor-danger: #f85149;
-        --fgColor-done: #ab7df8;
-        --bgColor-default: #0d1117;
-        --bgColor-muted: #09090a;
-        --bgColor-neutral-muted: #656c7633;
-        --bgColor-attention-muted: #bb800926;
-        --borderColor-default: #3d444d;
-        --borderColor-muted: #3d444db3;
-        --borderColor-neutral-muted: #3d444db3;
-        --borderColor-accent-emphasis: #1f6feb;
-        --borderColor-success-emphasis: #238636;
-        --borderColor-attention-emphasis: #9e6a03;
-        --borderColor-danger-emphasis: #da3633;
-        --borderColor-done-emphasis: #8957e5;
-        --color-prettylights-syntax-comment: #9198a1;
+        --color-prettylights-syntax-comment: #8b949e;
         --color-prettylights-syntax-constant: #79c0ff;
-        --color-prettylights-syntax-constant-other-reference-link: #a5d6ff;
         --color-prettylights-syntax-entity: #d2a8ff;
-        --color-prettylights-syntax-storage-modifier-import: #f0f6fc;
+        --color-prettylights-syntax-storage-modifier-import: #c9d1d9;
         --color-prettylights-syntax-entity-tag: #7ee787;
         --color-prettylights-syntax-keyword: #ff7b72;
         --color-prettylights-syntax-string: #a5d6ff;
         --color-prettylights-syntax-variable: #ffa657;
         --color-prettylights-syntax-brackethighlighter-unmatched: #f85149;
-        --color-prettylights-syntax-brackethighlighter-angle: #9198a1;
         --color-prettylights-syntax-invalid-illegal-text: #f0f6fc;
         --color-prettylights-syntax-invalid-illegal-bg: #8e1519;
         --color-prettylights-syntax-carriage-return-text: #f0f6fc;
@@ -63,57 +32,56 @@ i[class^="devicon-"] {
         --color-prettylights-syntax-string-regexp: #7ee787;
         --color-prettylights-syntax-markup-list: #f2cc60;
         --color-prettylights-syntax-markup-heading: #1f6feb;
-        --color-prettylights-syntax-markup-italic: #f0f6fc;
-        --color-prettylights-syntax-markup-bold: #f0f6fc;
+        --color-prettylights-syntax-markup-italic: #c9d1d9;
+        --color-prettylights-syntax-markup-bold: #c9d1d9;
         --color-prettylights-syntax-markup-deleted-text: #ffdcd7;
         --color-prettylights-syntax-markup-deleted-bg: #67060c;
         --color-prettylights-syntax-markup-inserted-text: #aff5b4;
         --color-prettylights-syntax-markup-inserted-bg: #033a16;
         --color-prettylights-syntax-markup-changed-text: #ffdfb6;
         --color-prettylights-syntax-markup-changed-bg: #5a1e02;
-        --color-prettylights-syntax-markup-ignored-text: #f0f6fc;
+        --color-prettylights-syntax-markup-ignored-text: #c9d1d9;
         --color-prettylights-syntax-markup-ignored-bg: #1158c7;
         --color-prettylights-syntax-meta-diff-range: #d2a8ff;
-        --color-prettylights-syntax-sublimelinter-gutter-mark: #3d444d;
+        --color-prettylights-syntax-brackethighlighter-angle: #8b949e;
+        --color-prettylights-syntax-sublimelinter-gutter-mark: #484f58;
+        --color-prettylights-syntax-constant-other-reference-link: #a5d6ff;
+        --color-fg-default: #e6edf3;
+        --color-fg-muted: #848d97;
+        --color-fg-subtle: #6e7681;
+        --color-canvas-default: #0d1117;
+        --color-canvas-subtle: #09090a;
+        --color-border-default: #30363d;
+        --color-border-muted: #21262d;
+        --color-neutral-muted: #09090a;
+        --color-accent-fg: #2f81f7;
+        --color-accent-emphasis: #1f6feb;
+        --color-success-fg: #3fb950;
+        --color-success-emphasis: #238636;
+        --color-attention-fg: #d29922;
+        --color-attention-emphasis: #9e6a03;
+        --color-attention-subtle: rgba(187, 128, 9, 0.15);
+        --color-danger-fg: #f85149;
+        --color-danger-emphasis: #da3633;
+        --color-done-fg: #a371f7;
+        --color-done-emphasis: #8957e5;
     }
 }
 
 @media (prefers-color-scheme: light) {
-    .markdown-body,
+    body,
     [data-theme="light"] {
-        /* light */
+        /*light*/
         color-scheme: light;
-        --focus-outlineColor: #0969da;
-        --fgColor-default: #1f2328;
-        --fgColor-muted: #59636e;
-        --fgColor-accent: #0969da;
-        --fgColor-success: #1a7f37;
-        --fgColor-attention: #9a6700;
-        --fgColor-danger: #d1242f;
-        --fgColor-done: #8250df;
-        --bgColor-default: #ffffff;
-        --bgColor-muted: #f6f8fa;
-        --bgColor-neutral-muted: #818b981f;
-        --bgColor-attention-muted: #fff8c5;
-        --borderColor-default: #d1d9e0;
-        --borderColor-muted: #d1d9e0b3;
-        --borderColor-neutral-muted: #d1d9e0b3;
-        --borderColor-accent-emphasis: #0969da;
-        --borderColor-success-emphasis: #1a7f37;
-        --borderColor-attention-emphasis: #9a6700;
-        --borderColor-danger-emphasis: #cf222e;
-        --borderColor-done-emphasis: #8250df;
-        --color-prettylights-syntax-comment: #59636e;
+        --color-prettylights-syntax-comment: #57606a;
         --color-prettylights-syntax-constant: #0550ae;
-        --color-prettylights-syntax-constant-other-reference-link: #0a3069;
         --color-prettylights-syntax-entity: #6639ba;
-        --color-prettylights-syntax-storage-modifier-import: #1f2328;
-        --color-prettylights-syntax-entity-tag: #0550ae;
+        --color-prettylights-syntax-storage-modifier-import: #24292f;
+        --color-prettylights-syntax-entity-tag: #116329;
         --color-prettylights-syntax-keyword: #cf222e;
         --color-prettylights-syntax-string: #0a3069;
         --color-prettylights-syntax-variable: #953800;
         --color-prettylights-syntax-brackethighlighter-unmatched: #82071e;
-        --color-prettylights-syntax-brackethighlighter-angle: #59636e;
         --color-prettylights-syntax-invalid-illegal-text: #f6f8fa;
         --color-prettylights-syntax-invalid-illegal-bg: #82071e;
         --color-prettylights-syntax-carriage-return-text: #f6f8fa;
@@ -121,29 +89,77 @@ i[class^="devicon-"] {
         --color-prettylights-syntax-string-regexp: #116329;
         --color-prettylights-syntax-markup-list: #3b2300;
         --color-prettylights-syntax-markup-heading: #0550ae;
-        --color-prettylights-syntax-markup-italic: #1f2328;
-        --color-prettylights-syntax-markup-bold: #1f2328;
+        --color-prettylights-syntax-markup-italic: #24292f;
+        --color-prettylights-syntax-markup-bold: #24292f;
         --color-prettylights-syntax-markup-deleted-text: #82071e;
         --color-prettylights-syntax-markup-deleted-bg: #ffebe9;
         --color-prettylights-syntax-markup-inserted-text: #116329;
         --color-prettylights-syntax-markup-inserted-bg: #dafbe1;
         --color-prettylights-syntax-markup-changed-text: #953800;
         --color-prettylights-syntax-markup-changed-bg: #ffd8b5;
-        --color-prettylights-syntax-markup-ignored-text: #d1d9e0;
+        --color-prettylights-syntax-markup-ignored-text: #eaeef2;
         --color-prettylights-syntax-markup-ignored-bg: #0550ae;
         --color-prettylights-syntax-meta-diff-range: #8250df;
-        --color-prettylights-syntax-sublimelinter-gutter-mark: #818b98;
+        --color-prettylights-syntax-brackethighlighter-angle: #57606a;
+        --color-prettylights-syntax-sublimelinter-gutter-mark: #8c959f;
+        --color-prettylights-syntax-constant-other-reference-link: #0a3069;
+        --color-fg-default: #1f2328;
+        --color-fg-muted: #656d76;
+        --color-fg-subtle: #6e7781;
+        --color-canvas-default: #0d1117;
+        --color-canvas-subtle: #f6f8fa;
+        --color-border-default: #d0d7de;
+        --color-border-muted: hsla(210, 18%, 87%, 1);
+        --color-neutral-muted: rgba(175, 184, 193, 0.2);
+        --color-accent-fg: #0969da;
+        --color-accent-emphasis: #0969da;
+        --color-success-fg: #1a7f37;
+        --color-success-emphasis: #1f883d;
+        --color-attention-fg: #9a6700;
+        --color-attention-emphasis: #9a6700;
+        --color-attention-subtle: #fff8c5;
+        --color-danger-fg: #d1242f;
+        --color-danger-emphasis: #cf222e;
+        --color-done-fg: #8250df;
+        --color-done-emphasis: #8250df;
     }
+}
+
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    min-width: 750px;
+    max-width: 1300px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: var(--color-canvas-default);
+}
+
+.markdown-body .octicon-link:before {
+    font: normal normal normal 16px/1 octicons-link;
+    display: inline-block;
+    text-decoration: none;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    content: "\f05c";
+    vertical-align: middle;
 }
 
 .markdown-body {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     margin: 0;
-    color: var(--fgColor-default);
-    background-color: var(--bgColor-default);
-    font-family: "RedditSans Nerd Font", "SFProDisplayNF-Regular", BlinkMacSystemFont, "Segoe UI", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-    font-size: 16.5px;
+    color: var(--color-fg-default);
+    background-color: var(--color-canvas-default);
+    font-family: "Reddit Sans", "Symbols Nerd Font", "UbuntuSans Nerd Font", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 18px;
     line-height: 1.4;
     word-wrap: break-word;
 }
@@ -185,7 +201,7 @@ i[class^="devicon-"] {
 
 .markdown-body a {
     background-color: transparent;
-    color: var(--fgColor-accent);
+    color: var(--color-accent-fg);
     text-decoration: none;
 }
 
@@ -209,12 +225,13 @@ i[class^="devicon-"] {
     font-weight: var(--base-text-weight-semibold, 600);
     padding-bottom: 0.3em;
     font-size: 2em;
-    border-bottom: 1px solid var(--borderColor-muted);
+    border-bottom: 1px solid var(--color-border-muted);
+    color: rgba(2, 118, 170, 0.95);
 }
 
 .markdown-body mark {
-    background-color: var(--bgColor-attention-muted);
-    color: var(--fgColor-default);
+    background-color: var(--color-attention-subtle);
+    color: var(--color-fg-default);
 }
 
 .markdown-body small {
@@ -241,29 +258,30 @@ i[class^="devicon-"] {
     border-style: none;
     max-width: 100%;
     box-sizing: content-box;
+    background-color: var(--color-canvas-default);
 }
 
 .markdown-body code,
 .markdown-body kbd,
 .markdown-body pre,
 .markdown-body samp {
-    font-family: "RedditMono Nerd Font", monospace;
+    font-family: monospace;
     font-size: 1em;
 }
 
 .markdown-body figure {
-    margin: 1em var(--base-size-40);
+    margin: 1em 40px;
 }
 
 .markdown-body hr {
     box-sizing: content-box;
     overflow: hidden;
     background: transparent;
-    border-bottom: 1px solid var(--borderColor-muted);
+    border-bottom: 1px solid var(--color-border-muted);
     height: 0.25em;
     padding: 0;
-    margin: var(--base-size-24) 0;
-    background-color: var(--borderColor-default);
+    margin: 24px 0;
+    background-color: var(--color-border-default);
     border: 0;
 }
 
@@ -316,7 +334,7 @@ i[class^="devicon-"] {
 }
 
 .markdown-body ::placeholder {
-    color: var(--fgColor-muted);
+    color: var(--color-fg-subtle);
     opacity: 1;
 }
 
@@ -338,8 +356,6 @@ i[class^="devicon-"] {
     width: max-content;
     max-width: 100%;
     overflow: auto;
-    overflow-wrap: anywhere;
-    font-variant: tabular-nums;
 }
 
 .markdown-body td,
@@ -351,11 +367,15 @@ i[class^="devicon-"] {
     cursor: pointer;
 }
 
+.markdown-body details:not([open]) > *:not(summary) {
+    display: none !important;
+}
+
 .markdown-body a:focus,
 .markdown-body [role="button"]:focus,
 .markdown-body input[type="radio"]:focus,
 .markdown-body input[type="checkbox"]:focus {
-    outline: 2px solid var(--focus-outlineColor);
+    outline: 2px solid var(--color-accent-fg);
     outline-offset: -2px;
     box-shadow: none;
 }
@@ -371,7 +391,7 @@ i[class^="devicon-"] {
 .markdown-body [role="button"]:focus-visible,
 .markdown-body input[type="radio"]:focus-visible,
 .markdown-body input[type="checkbox"]:focus-visible {
-    outline: 2px solid var(--focus-outlineColor);
+    outline: 2px solid var(--color-accent-fg);
     outline-offset: -2px;
     box-shadow: none;
 }
@@ -387,16 +407,21 @@ i[class^="devicon-"] {
 
 .markdown-body kbd {
     display: inline-block;
-    padding: var(--base-size-4);
-    font: 11px var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace);
+    padding: 3px 5px;
+    font:
+        11px SF Mono Powerline,
+        "LiterationMono Nerd Font",
+        Menlo,
+        Consolas,,
+        monospace;
     line-height: 10px;
-    color: var(--fgColor-default);
+    color: var(--color-fg-default);
     vertical-align: middle;
-    background-color: var(--bgColor-muted);
-    border: solid 1px var(--borderColor-neutral-muted);
-    border-bottom-color: var(--borderColor-neutral-muted);
-    border-radius: 10px;
-    box-shadow: inset 0 -1px 0 var(--borderColor-neutral-muted);
+    background-color: var(--color-canvas-subtle);
+    border: solid 1px var(--color-neutral-muted);
+    border-bottom-color: var(--color-neutral-muted);
+    border-radius: 9px;
+    box-shadow: inset 0 -1px 0 var(--color-neutral-muted);
 }
 
 .markdown-body h1,
@@ -405,17 +430,18 @@ i[class^="devicon-"] {
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6 {
-    margin-top: var(--base-size-24);
-    margin-bottom: var(--base-size-16);
+    margin-top: 24px;
+    margin-bottom: 16px;
     font-weight: var(--base-text-weight-semibold, 600);
     line-height: 1.25;
+    color: #97bcd7;
 }
 
 .markdown-body h2 {
     font-weight: var(--base-text-weight-semibold, 600);
     padding-bottom: 0.3em;
-    font-size: 1.5em;
-    border-bottom: 1px solid var(--borderColor-muted);
+    font-size: 1.3em;
+    border-bottom: 0.5px solid var(--color-border-muted);
 }
 
 .markdown-body h3 {
@@ -436,7 +462,7 @@ i[class^="devicon-"] {
 .markdown-body h6 {
     font-weight: var(--base-text-weight-semibold, 600);
     font-size: 0.85em;
-    color: var(--fgColor-muted);
+    color: var(--color-fg-muted);
 }
 
 .markdown-body p {
@@ -447,8 +473,8 @@ i[class^="devicon-"] {
 .markdown-body blockquote {
     margin: 0;
     padding: 0 1em;
-    color: var(--fgColor-muted);
-    border-left: 0.25em solid var(--borderColor-default);
+    color: var(--color-fg-muted);
+    border-left: 0.25em solid #d6d6d6cb;
 }
 
 .markdown-body ul,
@@ -477,15 +503,27 @@ i[class^="devicon-"] {
 .markdown-body tt,
 .markdown-body code,
 .markdown-body samp {
-    font-family: "RedditMono Nerd Font", "SF Mono Powerline", Menlo, monospace;
-    font-size: 12px;
+    font-family:
+        LiterationMono Nerd Font,
+        SFMono-Regular,
+        SF Mono,
+        Menlo,
+        Consolas,
+        monospace;
+    font-size: 14px;
 }
 
 .markdown-body pre {
     margin-top: 0;
     margin-bottom: 0;
-    font-family: "RedditMono Nerd Font", "SF Mono Powerline", Menlo, monospace;
-    font-size: 12px;
+    font-family:
+        LiterationMono Nerd Font,
+        SFMono-Regular,
+        SF Mono,
+        Menlo,
+        Consolas,
+        monospace;
+    font-size: 14px;
     word-wrap: normal;
 }
 
@@ -499,6 +537,7 @@ i[class^="devicon-"] {
 .markdown-body input::-webkit-outer-spin-button,
 .markdown-body input::-webkit-inner-spin-button {
     margin: 0;
+    -webkit-appearance: none;
     appearance: none;
 }
 
@@ -531,12 +570,12 @@ i[class^="devicon-"] {
 }
 
 .markdown-body .absent {
-    color: var(--fgColor-danger);
+    color: var(--color-danger-fg);
 }
 
 .markdown-body .anchor {
     float: left;
-    padding-right: var(--base-size-4);
+    padding-right: 4px;
     margin-left: -20px;
     line-height: 1;
 }
@@ -554,7 +593,7 @@ i[class^="devicon-"] {
 .markdown-body pre,
 .markdown-body details {
     margin-top: 0;
-    margin-bottom: var(--base-size-16);
+    margin-bottom: 16px;
 }
 
 .markdown-body blockquote > :first-child {
@@ -571,7 +610,7 @@ i[class^="devicon-"] {
 .markdown-body h4 .octicon-link,
 .markdown-body h5 .octicon-link,
 .markdown-body h6 .octicon-link {
-    color: var(--fgColor-default);
+    color: var(--color-fg-default);
     vertical-align: middle;
     visibility: hidden;
 }
@@ -673,7 +712,7 @@ i[class^="devicon-"] {
 }
 
 .markdown-body li > p {
-    margin-top: var(--base-size-16);
+    margin-top: 16px;
 }
 
 .markdown-body li + li {
@@ -686,15 +725,15 @@ i[class^="devicon-"] {
 
 .markdown-body dl dt {
     padding: 0;
-    margin-top: var(--base-size-16);
+    margin-top: 16px;
     font-size: 1em;
     font-style: italic;
     font-weight: var(--base-text-weight-semibold, 600);
 }
 
 .markdown-body dl dd {
-    padding: 0 var(--base-size-16);
-    margin-bottom: var(--base-size-16);
+    padding: 0 16px;
+    margin-bottom: 16px;
 }
 
 .markdown-body table th {
@@ -704,7 +743,7 @@ i[class^="devicon-"] {
 .markdown-body table th,
 .markdown-body table td {
     padding: 6px 13px;
-    border: 1px solid var(--borderColor-default);
+    border: 1px solid var(--color-border-default);
 }
 
 .markdown-body table td > :last-child {
@@ -712,12 +751,12 @@ i[class^="devicon-"] {
 }
 
 .markdown-body table tr {
-    background-color: var(--bgColor-default);
-    border-top: 1px solid var(--borderColor-muted);
+    background-color: var(--color-canvas-default);
+    border-top: 1px solid var(--color-border-muted);
 }
 
 .markdown-body table tr:nth-child(2n) {
-    background-color: var(--bgColor-muted);
+    background-color: var(--color-canvas-subtle);
 }
 
 .markdown-body table img {
@@ -750,7 +789,7 @@ i[class^="devicon-"] {
     padding: 7px;
     margin: 13px 0 0;
     overflow: hidden;
-    border: 1px solid var(--borderColor-default);
+    border: 1px solid var(--color-border-default);
 }
 
 .markdown-body span.frame span img {
@@ -762,7 +801,7 @@ i[class^="devicon-"] {
     display: block;
     padding: 5px 0 0;
     clear: both;
-    color: var(--fgColor-default);
+    color: var(--color-fg-default);
 }
 
 .markdown-body span.align-center {
@@ -828,12 +867,16 @@ i[class^="devicon-"] {
 
 .markdown-body code,
 .markdown-body tt {
-    padding: 0.2em 0.4em;
     margin: 0;
-    font-size: 85%;
     white-space: break-spaces;
-    background-color: var(--bgColor-neutral-muted);
-    border-radius: 6px;
+    background-color: #202020;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.markdown-body p code {
+    color: #d07282;
+    font-weight: 600;
 }
 
 .markdown-body code br,
@@ -851,6 +894,10 @@ i[class^="devicon-"] {
 
 .markdown-body pre code {
     font-size: 95%;
+    padding-top: 0em;
+    padding-bottom: 0.3em;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
 }
 
 .markdown-body pre > code {
@@ -863,7 +910,7 @@ i[class^="devicon-"] {
 }
 
 .markdown-body .highlight {
-    margin-bottom: var(--base-size-16);
+    margin-bottom: 16px;
 }
 
 .markdown-body .highlight pre {
@@ -873,22 +920,18 @@ i[class^="devicon-"] {
 
 .markdown-body .highlight pre,
 .markdown-body pre {
-    padding: var(--base-size-16);
+    padding: 16px;
     overflow: auto;
-    font-size: 85%;
-    line-height: 1.4;
-    color: var(--fgColor-default);
-    background-color: #09090a;
-    border-radius: 10px;
-    box-shadow:
-        0 10px 16px 0 rgba(0, 0, 0, 0.2),
-        0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+    font-size: 80%;
+    line-height: 1.45;
+    color: var(--color-fg-default);
+    background-color: var(--color-canvas-subtle);
+    border-radius: 9px;
 }
 
 .markdown-body pre code,
 .markdown-body pre tt {
     display: inline;
-    max-width: auto;
     padding: 0;
     margin: 0;
     overflow: visible;
@@ -909,9 +952,9 @@ i[class^="devicon-"] {
 }
 
 .markdown-body .csv-data .blob-num {
-    padding: 10px var(--base-size-8) 9px;
+    padding: 10px 8px 9px;
     text-align: right;
-    background: var(--bgColor-default);
+    background: var(--color-canvas-default);
     border: 0;
 }
 
@@ -921,7 +964,7 @@ i[class^="devicon-"] {
 
 .markdown-body .csv-data th {
     font-weight: var(--base-text-weight-semibold, 600);
-    background: var(--bgColor-muted);
+    background: var(--color-canvas-subtle);
     border-top: 0;
 }
 
@@ -935,18 +978,18 @@ i[class^="devicon-"] {
 
 .markdown-body .footnotes {
     font-size: 12px;
-    color: var(--fgColor-muted);
-    border-top: 1px solid var(--borderColor-default);
+    color: var(--color-fg-muted);
+    border-top: 1px solid var(--color-border-default);
 }
 
 .markdown-body .footnotes ol {
-    padding-left: var(--base-size-16);
+    padding-left: 16px;
 }
 
 .markdown-body .footnotes ol ul {
     display: inline-block;
-    padding-left: var(--base-size-16);
-    margin-top: var(--base-size-16);
+    padding-left: 16px;
+    margin-top: 16px;
 }
 
 .markdown-body .footnotes li {
@@ -955,26 +998,22 @@ i[class^="devicon-"] {
 
 .markdown-body .footnotes li:target::before {
     position: absolute;
-    top: calc(var(--base-size-8) * -1);
-    right: calc(var(--base-size-8) * -1);
-    bottom: calc(var(--base-size-8) * -1);
-    left: calc(var(--base-size-24) * -1);
+    top: -8px;
+    right: -8px;
+    bottom: -8px;
+    left: -24px;
     pointer-events: none;
     content: "";
-    border: 2px solid var(--borderColor-accent-emphasis);
-    border-radius: 6px;
+    border: 2px solid var(--color-accent-emphasis);
+    border-radius: 9px;
 }
 
 .markdown-body .footnotes li:target {
-    color: var(--fgColor-default);
+    color: var(--color-fg-default);
 }
 
 .markdown-body .footnotes .data-footnote-backref g-emoji {
     font-family: monospace;
-}
-
-.markdown-body body:has(:modal) {
-    padding-right: var(--dialog-scrollgutter) !important;
 }
 
 .markdown-body .pl-c {
@@ -1097,24 +1136,10 @@ i[class^="devicon-"] {
     color: var(--color-prettylights-syntax-constant-other-reference-link);
 }
 
-.markdown-body [role="button"]:focus:not(:focus-visible),
-.markdown-body [role="tabpanel"][tabindex="0"]:focus:not(:focus-visible),
-.markdown-body button:focus:not(:focus-visible),
-.markdown-body summary:focus:not(:focus-visible),
-.markdown-body a:focus:not(:focus-visible) {
-    outline: none;
-    box-shadow: none;
-}
-
-.markdown-body [tabindex="0"]:focus:not(:focus-visible),
-.markdown-body details-dialog:focus:not(:focus-visible) {
-    outline: none;
-}
-
 .markdown-body g-emoji {
     display: inline-block;
     min-width: 1ch;
-    font-family: "Apple Color Emoji", "Symbols Nerd Font", "Segoe UI Symbol";
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 1em;
     font-style: normal !important;
     font-weight: var(--base-text-weight-normal, 400);
@@ -1140,4 +1165,361 @@ i[class^="devicon-"] {
 }
 
 .markdown-body .task-list-item + .task-list-item {
-    margin-top: var
+    margin-top: 4px;
+}
+
+.markdown-body .task-list-item .handle {
+    display: none;
+}
+
+.markdown-body .task-list-item-checkbox {
+    margin: 0 0.2em 0.25em -1.4em;
+    vertical-align: middle;
+}
+
+.markdown-body .contains-task-list:dir(rtl) .task-list-item-checkbox {
+    margin: 0 -1.6em 0.25em 0.2em;
+}
+
+.markdown-body .contains-task-list {
+    position: relative;
+}
+
+.markdown-body .contains-task-list:hover .task-list-item-convert-container,
+.markdown-body .contains-task-list:focus-within .task-list-item-convert-container {
+    display: block;
+    width: auto;
+    height: 24px;
+    overflow: visible;
+    clip: auto;
+}
+
+.markdown-body ::-webkit-calendar-picker-indicator {
+    filter: invert(50%);
+}
+
+.markdown-body .markdown-alert {
+    padding: var(--base-size-8, 8px) var(--base-size-16, 16px);
+    margin-bottom: 16px;
+    color: inherit;
+    border-left: 0.25em solid var(--color-border-default);
+}
+
+.markdown-body .markdown-alert > :first-child {
+    margin-top: 0;
+}
+
+.markdown-body .markdown-alert > :last-child {
+    margin-bottom: 0;
+}
+
+.markdown-body .markdown-alert .markdown-alert-title {
+    display: flex;
+    font-weight: var(--base-text-weight-medium, 500);
+    align-items: center;
+    line-height: 1;
+}
+
+.markdown-body .markdown-alert.markdown-alert-note {
+    border-left-color: var(--color-accent-emphasis);
+}
+
+.markdown-body .markdown-alert.markdown-alert-note .markdown-alert-title {
+    color: var(--color-accent-fg);
+}
+
+.markdown-body .markdown-alert.markdown-alert-important {
+    border-left-color: var(--color-done-emphasis);
+}
+
+.markdown-body .markdown-alert.markdown-alert-important .markdown-alert-title {
+    color: var(--color-done-fg);
+}
+
+.markdown-body .markdown-alert.markdown-alert-warning {
+    border-left-color: var(--color-attention-emphasis);
+}
+
+.markdown-body .markdown-alert.markdown-alert-warning .markdown-alert-title {
+    color: var(--color-attention-fg);
+}
+
+.markdown-body .markdown-alert.markdown-alert-tip {
+    border-left-color: var(--color-success-emphasis);
+}
+
+.markdown-body .markdown-alert.markdown-alert-tip .markdown-alert-title {
+    color: var(--color-success-fg);
+}
+
+.markdown-body .markdown-alert.markdown-alert-caution {
+    border-left-color: var(--color-danger-emphasis);
+}
+
+.markdown-body .markdown-alert.markdown-alert-caution .markdown-alert-title {
+    color: var(--color-danger-fg);
+}
+
+.highlight {
+    background-color: #f7f7f7;
+    color: #333333;
+}
+
+.highlight .hll {
+    background-color: #ffffcc;
+}
+
+.highlight .c {
+    color: #999988;
+    font-style: italic;
+}
+
+.highlight .err {
+    color: #a61717;
+    background-color: #e3d2d2;
+}
+
+.highlight .k {
+    font-weight: bold;
+}
+
+.highlight .o {
+    font-weight: bold;
+}
+
+.highlight .cm {
+    color: #999988;
+    font-style: italic;
+}
+
+.highlight .cp {
+    color: #999999;
+    font-weight: bold;
+}
+
+.highlight .c1 {
+    color: #999988;
+    font-style: italic;
+}
+
+.highlight .cs {
+    color: #999999;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.highlight .gd {
+    color: #000000;
+    background-color: #ffdddd;
+}
+
+.highlight .ge {
+    font-style: italic;
+}
+
+.highlight .gr {
+    color: #aa0000;
+}
+
+.highlight .gh {
+    color: #999999;
+}
+
+.highlight .gi {
+    color: #000000;
+    background-color: #ddffdd;
+}
+
+.highlight .go {
+    color: #888888;
+}
+
+.highlight .gp {
+    color: #555555;
+}
+
+.highlight .gs {
+    font-weight: bold;
+}
+
+.highlight .gu {
+    color: #800080;
+    font-weight: bold;
+}
+
+.highlight .gt {
+    color: #aa0000;
+}
+
+.highlight .kc {
+    font-weight: bold;
+}
+
+.highlight .kd {
+    font-weight: bold;
+}
+
+.highlight .kn {
+    font-weight: bold;
+}
+
+.highlight .kp {
+    font-weight: bold;
+}
+
+.highlight .kr {
+    font-weight: bold;
+}
+
+.highlight .kt {
+    color: #445588;
+    font-weight: bold;
+}
+
+.highlight .m {
+    color: #009999;
+}
+
+.highlight .s {
+    color: #dd1144;
+}
+
+.highlight .n {
+    color: #333333;
+}
+
+.highlight .na {
+    color: teal;
+}
+
+.highlight .nb {
+    color: #0086b3;
+}
+
+.highlight .nc {
+    color: #445588;
+    font-weight: bold;
+}
+
+.highlight .no {
+    color: teal;
+}
+
+.highlight .ni {
+    color: purple;
+}
+
+.highlight .ne {
+    color: #990000;
+    font-weight: bold;
+}
+
+.highlight .nf {
+    color: #990000;
+    font-weight: bold;
+}
+
+.highlight .nn {
+    color: #555555;
+}
+
+.highlight .nt {
+    color: navy;
+}
+
+.highlight .nv {
+    color: teal;
+}
+
+.highlight .ow {
+    font-weight: bold;
+}
+
+.highlight .w {
+    color: #bbbbbb;
+}
+
+.highlight .mf {
+    color: #009999;
+}
+
+.highlight .mh {
+    color: #009999;
+}
+
+.highlight .mi {
+    color: #009999;
+}
+
+.highlight .mo {
+    color: #009999;
+}
+
+.highlight .sb {
+    color: #dd1144;
+}
+
+.highlight .sc {
+    color: #dd1144;
+}
+
+.highlight .sd {
+    color: #dd1144;
+}
+
+.highlight .s2 {
+    color: #dd1144;
+}
+
+.highlight .se {
+    color: #dd1144;
+}
+
+.highlight .sh {
+    color: #dd1144;
+}
+
+.highlight .si {
+    color: #dd1144;
+}
+
+.highlight .sx {
+    color: #dd1144;
+}
+
+.highlight .sr {
+    color: #009926;
+}
+
+.highlight .s1 {
+    color: #dd1144;
+}
+
+.highlight .ss {
+    color: #990073;
+}
+
+.highlight .bp {
+    color: #999999;
+}
+
+.highlight .vc {
+    color: teal;
+}
+
+.highlight .vg {
+    color: teal;
+}
+
+.highlight .vi {
+    color: teal;
+}
+
+.highlight .il {
+    color: #009999;
+}
+
+.highlight .gc {
+    color: #999;
+    background-color: #eaf2f5;
+}

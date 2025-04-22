@@ -72,50 +72,6 @@ const ClipbModule = (() => {
         codeBlocks.forEach(addCopyButton);
     };
 
-    const processLanguageLabels = () => {
-        const pres = document.querySelectorAll('pre[class*="language-"]');
-        console.log(`Processing language labels for ${pres.length} pre elements`);
-
-        pres.forEach((pre, index) => {
-            // Get the language from the class name
-            let language = null;
-            const classNames = pre.className.split(' ');
-
-            for (const className of classNames) {
-                if (className.startsWith("language-")) {
-                    language = className.split("-")[1];
-                    break;
-                }
-            }
-
-            if (language) {
-                console.log(`Found language ${language} for pre ${index + 1}`);
-
-                // Create the language label
-                const label = document.createElement("div");
-                label.className = "language-label";
-                label.textContent = language;
-
-                // Check if pre is already wrapped
-                let wrapper;
-                if (pre.parentElement && pre.parentElement.classList.contains("code-wrapper")) {
-                    wrapper = pre.parentElement;
-                } else {
-                    // Create and insert wrapper
-                    wrapper = document.createElement("div");
-                    wrapper.className = "code-wrapper";
-                    pre.parentNode.insertBefore(wrapper, pre);
-                    wrapper.appendChild(pre);
-                }
-
-                // Add the language label to the wrapper if not already present
-                if (!wrapper.querySelector('.language-label')) {
-                    wrapper.appendChild(label);
-                }
-            }
-        });
-    };
-
     // MutationObserver callback to handle dynamically added code blocks
     const handleMutations = (mutations) => {
         mutations.forEach((mutation) => {
