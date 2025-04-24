@@ -1,6 +1,7 @@
 @import "https://www.nerdfonts.com/assets/css/webfont.css";
 
-html {
+html,
+body {
 	background: var(--bgColorDefault);
 	color: var(--fgColor-accent);
 }
