@@ -6,6 +6,8 @@ import (
 	"math/rand"
 	"sync"
 	"time"
+
+	"goplunk/internal/config"
 )
 
 func New(cfg *config.Config) (*App, error) {

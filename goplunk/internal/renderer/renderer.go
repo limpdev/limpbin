@@ -312,7 +312,7 @@ func NewRenderer(animManager *animation.AnimationManager, cfg *config.Config) (*
 	}
 
 	var pRenderTarget ID2D1HwndRenderTarget
-	ret, _, err = syscall.Syscall6(r.factory+8*unsafe.Sizeof(uintptr(0)), // VTable index 8 for CreateHwndRenderTarget
+	ret, _, err = uintptr(r.factory) + 8*unsafe.Sizeof(uintptr(0)), // VTable index 8 for CreateHwndRenderTarget
 		4, // Number of arguments
 		uintptr(r.factory),
 		uintptr(unsafe.Pointer(&renderTargetProps)),
