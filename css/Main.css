@@ -1,5 +1,12 @@
 @import "https://www.nerdfonts.com/assets/css/webfont.css";
 
+article {
+	max-width: 1050px;
+	min-width: 650px;
+	justify-content: center;
+	display: flow;
+}
+
 .markdown-body {
 	--base-size-4: 0.25rem;
 	--base-size-8: 0.5rem;
@@ -11,8 +18,6 @@
 	--base-text-weight-semibold: 600;
 	--fontStack-monospace: "SF Mono", "Symbols Nerd Font", Menlo, monospace;
 	--fgColor-accent: Highlight;
-	max-width: 1050px;
-	min-width: 650px;
 }
 
 i[class^="devicon-"] {
@@ -77,10 +82,11 @@ i[class^="devicon-"] {
 	}
 }
 
+:root,
 html,
 body {
-	background: var(--bgColor-default);
-	color: var(--fgColor-accent);
+	background: #000000 !important;
+	color: var(--fgColor-default) !important;
 	margin: 0 !important;
 }
 
