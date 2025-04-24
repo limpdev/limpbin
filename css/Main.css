@@ -77,7 +77,7 @@ i[class^="devicon-"] {
 
 html,
 body {
-	background: var(--bgColorDefault);
+	background: var(--bgColor-default);
 	color: var(--fgColor-accent);
 	margin: 0 !important;
 }
