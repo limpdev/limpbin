@@ -1,12 +1,5 @@
 @import "https://www.nerdfonts.com/assets/css/webfont.css";
 
-html,
-body {
-	background: var(--bgColorDefault);
-	color: var(--fgColor-accent);
-	margin: 0 !important;
-}
-
 .markdown-body {
 	--base-size-4: 0.25rem;
 	--base-size-8: 0.5rem;
@@ -80,6 +73,13 @@ i[class^="devicon-"] {
 		--color-prettylights-syntax-meta-diff-range: #d2a8ff;
 		--color-prettylights-syntax-sublimelinter-gutter-mark: #3d444d;
 	}
+}
+
+html,
+body {
+	background: var(--bgColorDefault);
+	color: var(--fgColor-accent);
+	margin: 0 !important;
 }
 
 .markdown-body {
