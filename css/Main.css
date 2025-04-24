@@ -4,6 +4,7 @@ html,
 body {
 	background: var(--bgColorDefault);
 	color: var(--fgColor-accent);
+	margin: 0 !important;
 }
 
 .markdown-body {
