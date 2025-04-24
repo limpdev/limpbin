@@ -11,6 +11,8 @@
 	--base-text-weight-semibold: 600;
 	--fontStack-monospace: "SF Mono", "Symbols Nerd Font", Menlo, monospace;
 	--fgColor-accent: Highlight;
+	max-width: 1050px;
+	min-width: 650px;
 }
 
 i[class^="devicon-"] {
@@ -423,14 +425,13 @@ body {
 .markdown-body tt,
 .markdown-body code,
 .markdown-body samp {
-	font-family: "RedditMono Nerd Font", "SF Mono Powerline", Menlo, monospace;
+	font-family: "SFMono Nerd Font", "SF Mono", Menlo, monospace;
 	font-size: 12px;
 }
 
 .markdown-body pre {
-	margin-top: 0;
-	margin-bottom: 0;
-	font-family: "RedditMono Nerd Font", "SF Mono Powerline", Menlo, monospace;
+	margin: 1.5em;
+	font-family: "SFMono Nerd Font", "SF Mono", Menlo, monospace;
 	font-size: 12px;
 	word-wrap: normal;
 }
@@ -779,7 +780,7 @@ body {
 	font-size: 85%;
 	white-space: break-spaces;
 	background-color: var(--bgColor-neutral-muted);
-	border-radius: 6px;
+	border-radius: 7px;
 }
 
 .markdown-body code br,
