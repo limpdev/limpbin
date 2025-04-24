@@ -1,10 +1,10 @@
 @import "https://www.nerdfonts.com/assets/css/webfont.css";
 
 article {
+	display: flow;
 	max-width: 1050px;
 	min-width: 650px;
 	justify-content: center;
-	display: flow;
 }
 
 .markdown-body {
