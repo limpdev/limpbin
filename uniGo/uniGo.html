@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Unicode Character Browser</title>
+		<style>
+			:root {
+				--primary-color: #60a2ebcc;
+				--secondary-color: #3f37c9cc;
+				--bg-color: #15161e;
+				--card-color: #0d0e0edd;
+				--text-color: #c1c1c1;
+				--border-color: #e9ecef00;
+			}
+
+			body {
+				font-family: "Satoshi Nerd Font", Tahoma, Geneva, Verdana, sans-serif;
+				background-color: var(--bg-color);
+				color: var(--text-color);
+				margin: 0;
+				padding: 20px;
+				line-height: 1.3;
+			}
+
+			.container {
+				max-width: 1200px;
+				margin: 0 auto;
+			}
+
+			header {
+				margin-bottom: 20px;
+			}
+
+			h1 {
+				color: #05abd590;
+				margin-bottom: 10px;
+				justify-self: anchor-center;
+			}
+
+			.search-container {
+				display: flex;
+				gap: 10px;
+				margin-bottom: 20px;
+				flex-wrap: wrap;
+				color: #c1c1c199;
+				outline-color: #05a2c920;
+			}
+
+			.search-box {
+				flex: 1;
+				min-width: 60px;
+				padding: 10px 15px;
+				border: hidden;
+				border-radius: 13px;
+				font-size: 14.5px;
+				background: none;
+				color: #c1c1c199;
+				outline-color: #05a2c920;
+			}
+
+			.filter-container {
+				display: flex;
+				gap: 10px;
+				margin-bottom: 10px;
+				flex-wrap: wrap;
+				border-radius: 13px;
+				border: none;
+				background: none;
+			}
+
+			select {
+				color: var(--text-color);
+				padding: 5px;
+				border: none;
+				border-radius: 4px;
+				background-color: #0d0e0edd;
+				min-width: 150px; /* Give selects some base width */
+			}
+
+			.chars-container {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+				gap: 10px;
+				margin-bottom: 20px;
+				min-height: 200px; /* Prevent collapsing during load */
+			}
+
+			.char-card {
+				background-color: var(--card-color);
+				border: 1px solid var(--border-color);
+				border-radius: 4px;
+				padding: 10px;
+				text-align: center;
+				cursor: pointer;
+				transition: all 0.2s ease;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+				overflow: hidden; /* Prevent long codes/names breaking layout badly */
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				min-height: 80px; /* Ensure consistent card height */
+			}
+
+			.char-card:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+				border-color: var(--primary-color);
+			}
+
+			.char {
+				font-size: 28px; /* Slightly larger for better visibility */
+				margin-bottom: 5px;
+				display: block;
+				line-height: 1.2; /* Adjust line height */
+				transition: all 0.2s ease;
+			}
+
+			.char-card:hover .char {
+				color: var(--primary-color);
+				text-shadow: 0 0 5px var(--primary-color);
+				font-size: 1.1rem;
+			}
+
+			.code {
+				font-size: 10px;
+				color: #6c757d;
+				word-break: break-all; /* Break long codepoints if needed */
+			}
+
+			.pagination {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-wrap: wrap; /* Allow wrapping on small screens */
+				margin-top: 20px;
+				gap: 5px;
+			}
+
+			.page-btn {
+				color: #dddddd50;
+				padding: 5px 10px;
+				border: 1px solid var(--border-color);
+				background-color: var(--card-color);
+				cursor: pointer;
+				border-radius: 4px;
+				min-width: 30px; /* Ensure buttons have some width */
+				text-align: center;
+				transition: all 0.5s ease;
+			}
+
+			.page-btn:hover {
+				color: #dddddddd;
+				background-color: #60a2ebbb;
+				border-color: var(--primary-color);
+			}
+
+			.page-btn.active {
+				background-color: var(--primary-color);
+				color: white;
+				border-color: var(--primary-color);
+				font-weight: bold;
+			}
+			.page-info {
+				margin: 0 10px;
+				font-size: 14px;
+				color: #6c757d;
+			}
+
+			.status {
+				text-align: center;
+				padding: 40px 20px; /* More padding for status */
+				color: #6c757d;
+				font-style: italic;
+			}
+
+			.toast {
+				position: fixed;
+				bottom: 20px;
+				left: 50%;
+				transform: translateX(-50%);
+				background-color: #333;
+				color: white;
+				padding: 10px 20px;
+				border-radius: 4px;
+				opacity: 0;
+				transition:
+					opacity 0.3s ease,
+					bottom 0.3s ease; /* Animate bottom too */
+				z-index: 1000;
+				pointer-events: none; /* Don't intercept clicks */
+			}
+
+			.toast.show {
+				opacity: 1;
+				bottom: 30px; /* Move up slightly when shown */
+			}
+
+			.detail-view {
+				display: none; /* Initially hidden */
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
+				z-index: 1000;
+				justify-content: center;
+				align-items: center;
+				padding: 20px; /* Add padding for small screens */
+			}
+
+			.detail-view.visible {
+				display: flex; /* Use flex to enable centering */
+			}
+
+			.detail-card {
+				background-color: #48484830;
+				backdrop-filter: blur(10px);
+				padding: 30px; /* More padding */
+				border-radius: 8px;
+				max-width: 90%;
+				width: 550px; /* Slightly wider */
+				max-height: 90vh;
+				overflow-y: auto;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* More prominent shadow */
+			}
+
+			.detail-char {
+				font-size: 80px; /* Even larger character */
+				text-align: center;
+				margin-bottom: 25px;
+				color: var(--primary-color); /* Color the large char */
+				line-height: 1;
+			}
+
+			.detail-info {
+				margin-bottom: 25px;
+			}
+
+			.detail-info table {
+				width: 100%;
+				border-collapse: collapse;
+				font-size: 14px; /* Slightly smaller table text */
+				color: #c1c1c180;
+			}
+
+			.detail-info tr:nth-child(even) {
+				background-color: #0d0e0e90; /* Subtle alternating row color */
+				color: #e1e1e180;
+			}
+
+			.detail-info th,
+			.detail-info td {
+				padding: 10px 12px; /* More padding in table cells */
+				text-align: left;
+				border-bottom: 1px solid #e9ecef; /* Lighter border */
+				vertical-align: top; /* Align top for potentially long names */
+			}
+			.detail-info th {
+				width: 120px; /* Fixed width for labels */
+				font-weight: 600; /* Bolder labels */
+				color: #e1e1e180;
+			}
+
+			.detail-actions {
+				display: flex;
+				justify-content: center;
+				gap: 15px; /* More space between buttons */
+			}
+
+			.btn {
+				padding: 10px 20px; /* Larger buttons */
+				background-color: var(--primary-color);
+				color: var(--text-color);
+				border: none;
+				border-radius: 13px;
+				cursor: crosshair;
+				font-size: 14px;
+				transition: background-color 0.2s ease;
+			}
+
+			.btn-secondary {
+				background-color: #6c757d;
+			}
+
+			.btn:hover {
+				opacity: 0.9;
+			}
+			.btn:active {
+				transform: scale(0.98); /* Click feedback */
+			}
+
+			.loading {
+				/* Renamed from .status for clarity */
+				text-align: center;
+				padding: 50px;
+				font-size: 18px;
+				color: #6c757d;
+			}
+			.loading::after {
+				content: "...";
+				display: inline-block;
+				animation: loading-dots 1.5s infinite step-start;
+			}
+			@keyframes loading-dots {
+				33% {
+					content: ".";
+				}
+				66% {
+					content: "..";
+				}
+				100% {
+					content: "...";
+				}
+			}
+
+			@media (max-width: 768px) {
+				.chars-container {
+					grid-template-columns: repeat(auto-fill, minmax(65px, 1fr)); /* Adjust grid for mobile */
+				}
+				.search-container,
+				.filter-container {
+					flex-direction: column; /* Stack search/filters */
+				}
+				.search-box,
+				select {
+					width: 100%; /* Full width on mobile */
+				}
+				.detail-card {
+					width: 95%;
+					padding: 20px;
+				}
+				.detail-char {
+					font-size: 60px;
+				}
+			}
+			@media (max-width: 480px) {
+				.chars-container {
+					grid-template-columns: repeat(auto-fill, minmax(55px, 1fr)); /* Even smaller cards */
+					gap: 5px;
+				}
+				.char-card {
+					min-height: 70px;
+					padding: 5px;
+				}
+				.char {
+					font-size: 24px;
+				}
+				.code {
+					font-size: 9px;
+				}
+				h1 {
+					font-size: 24px;
+				}
+			}
+			.vscode-icons--file-type-go {
+				vertical-align: text-top;
+				display: inline-block;
+				width: 53px;
+				height: 53px;
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 254.5 225'%3E%3Cpath fill='%2300acd7' d='M-46.926 89c-.621 0-.777-.311-.466-.777l3.262-4.194a2.23 2.23 0 0 1 1.708-.777h55.448c.621 0 .777.466.466.932l-2.64 4.038a2.37 2.37 0 0 1-1.553.932Zm-23.453 14.285c-.621 0-.777-.311-.466-.777l3.262-4.194a2.23 2.23 0 0 1 1.708-.777H4.95a.714.714 0 0 1 .777.932L4.484 102.2a1.36 1.36 0 0 1-1.4.932Zm37.587 14.289c-.621 0-.777-.466-.466-.932l2.174-3.883a2.06 2.06 0 0 1 1.553-.932H1.533c.621 0 .932.466.932 1.087l-.311 3.728a1.17 1.17 0 0 1-1.087 1.087ZM128.426 86.2c-9.785 2.485-16.464 4.349-26.093 6.834c-2.33.621-2.485.777-4.5-1.553c-2.33-2.64-4.038-4.349-7.3-5.9c-9.785-4.815-19.259-3.417-28.112 2.33c-10.561 6.834-16 16.929-15.842 29.51c.155 12.425 8.7 22.676 20.968 24.385c10.561 1.4 19.414-2.33 26.4-10.251c1.4-1.708 2.64-3.572 4.194-5.747H68.163c-3.262 0-4.038-2.019-2.951-4.659c2.019-4.815 5.747-12.891 7.921-16.929a4.19 4.19 0 0 1 3.883-2.485h56.535c-.311 4.194-.311 8.387-.932 12.581a66.24 66.24 0 0 1-12.736 30.442c-11.183 14.752-25.783 23.915-44.265 26.4c-15.221 2.019-29.355-.932-41.78-10.251a48.8 48.8 0 0 1-19.725-34.48c-2.019-16.929 2.951-32.15 13.2-45.508C38.342 66.475 52.942 57.312 70.8 54.05c14.6-2.64 28.578-.932 41.159 7.61a48.7 48.7 0 0 1 18.017 21.9c.935 1.398.313 2.175-1.55 2.64'/%3E%3Cpath fill='%2300acd7' d='M179.835 172.09c-14.134-.311-27.025-4.349-37.9-13.668a48.7 48.7 0 0 1-16.774-29.976c-2.8-17.551 2.019-33.082 12.581-46.905c11.338-14.91 25.006-22.676 43.488-25.938c15.842-2.8 30.753-1.243 44.265 7.921c12.27 8.387 19.88 19.725 21.9 34.635c2.64 20.968-3.417 38.052-17.861 52.652a71.17 71.17 0 0 1-37.276 19.88c-4.191.778-8.384.933-12.423 1.399m36.965-62.747a45 45 0 0 0-.466-5.125c-2.8-15.376-16.929-24.074-31.684-20.657c-14.444 3.262-23.763 12.425-27.18 27.025a25.58 25.58 0 0 0 14.289 29.355c8.542 3.728 17.085 3.262 25.317-.932c12.269-6.369 18.948-16.309 19.724-29.666'/%3E%3C/svg%3E");
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<header>
+				<h1>uni<span class="vscode-icons--file-type-go"></span></h1>
+				<p>Browse, search, and copy Unicode characters.</p>
+			</header>
+
+			<div class="search-container">
+				<input type="text" id="searchInput" class="search-box" placeholder="Search by name, code (U+XXXX), or character..." />
+			</div>
+
+			<div class="filter-container">
+				<!-- Block Filter (Optional - Requires backend support) -->
+				<!-- <select id="blockFilter">
+                    <option value="">All Blocks</option>
+                </select> -->
+
+				<select id="categoryFilter">
+					<option value="">All Categories</option>
+					<!-- Categories will be populated via JS -->
+				</select>
+			</div>
+
+			<div id="charsContainer" class="chars-container">
+				<!-- Initial loading message -->
+				<div class="loading">Loading Unicode data...</div>
+			</div>
+
+			<div id="pagination" class="pagination"></div>
+		</div>
+
+		<div id="toast" class="toast">Copied to clipboard!</div>
+
+		<div id="detailView" class="detail-view">
+			<div class="detail-card">
+				<div id="detailChar" class="detail-char"></div>
+				<div id="detailInfo" class="detail-info">
+					<!-- Content generated by JS -->
+				</div>
+				<div class="detail-actions">
+					<button id="copyDetailBtn" class="btn">Copy Character</button>
+					<button id="closeDetailBtn" class="btn btn-secondary">Close</button>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			const API_BASE = "/api";
+			const CHARS_PER_PAGE = 100; // Adjust as needed
+
+			// --- DOM Elements ---
+			const searchInput = document.getElementById("searchInput");
+			const categoryFilter = document.getElementById("categoryFilter");
+			// const blockFilter = document.getElementById('blockFilter'); // Uncomment if using block filter
+			const charsContainer = document.getElementById("charsContainer");
+			const paginationContainer = document.getElementById("pagination");
+			const toastElement = document.getElementById("toast");
+			const detailView = document.getElementById("detailView");
+			const detailChar = document.getElementById("detailChar");
+			const detailInfo = document.getElementById("detailInfo");
+			const copyDetailBtn = document.getElementById("copyDetailBtn");
+			const closeDetailBtn = document.getElementById("closeDetailBtn");
+
+			// --- State ---
+			let currentPage = 1;
+			let currentSearch = "";
+			let currentCategory = "";
+			// let currentBlock = ''; // Uncomment if using block filter
+			let totalPages = 1;
+			let isLoading = false;
+			let searchTimeout;
+			let currentDetailData = null; // Store data for the currently viewed character
+
+			// --- Utility Functions ---
+			function debounce(func, delay) {
+				return function (...args) {
+					clearTimeout(searchTimeout);
+					searchTimeout = setTimeout(() => {
+						func.apply(this, args);
+					}, delay);
+				};
+			}
+
+			function showToast(message = "Copied to clipboard!") {
+				toastElement.textContent = message;
+				toastElement.classList.add("show");
+				setTimeout(() => {
+					toastElement.classList.remove("show");
+				}, 2000); // Show toast for 2 seconds
+			}
+
+			async function copyToClipboard(text) {
+				if (!navigator.clipboard) {
+					// Fallback for older browsers (less reliable)
+					try {
+						const textArea = document.createElement("textarea");
+						textArea.value = text;
+						textArea.style.position = "fixed"; // Prevent scrolling to bottom
+						textArea.style.opacity = "0";
+						document.body.appendChild(textArea);
+						textArea.focus();
+						textArea.select();
+						document.execCommand("copy");
+						document.body.removeChild(textArea);
+						showToast(`Copied: ${text}`);
+					} catch (err) {
+						console.error("Fallback copy failed:", err);
+						showToast("Copy failed!");
+					}
+					return;
+				}
+				try {
+					await navigator.clipboard.writeText(text);
+					showToast(`Copied: ${text}`);
+				} catch (err) {
+					console.error("Async clipboard copy failed:", err);
+					showToast("Copy failed!");
+				}
+			}
+
+			function sanitizeHTML(str) {
+				const temp = document.createElement("div");
+				temp.textContent = str;
+				return temp.innerHTML;
+			}
+
+			// --- API Fetching ---
+			async function fetchMetadata() {
+				try {
+					const response = await fetch(`${API_BASE}/metadata`);
+					if (!response.ok) {
+						throw new Error(`HTTP error! status: ${response.status}`);
+					}
+					const data = await response.json();
+					populateCategoryFilter(data.categories);
+					// populateBlockFilter(data.blocks); // Uncomment if using block filter
+				} catch (error) {
+					console.error("Error fetching metadata:", error);
+					// Handle error - maybe show a message to the user
+					categoryFilter.disabled = true;
+					// blockFilter.disabled = true;
+				}
+			}
+
+			async function fetchCharacters() {
+				if (isLoading) return; // Prevent concurrent fetches
+				isLoading = true;
+				renderLoading(); // Show loading indicator
+
+				const params = new URLSearchParams({
+					search: currentSearch,
+					category: currentCategory,
+					// block: currentBlock, // Uncomment if using block filter
+					page: currentPage,
+					limit: CHARS_PER_PAGE,
+				});
+
+				try {
+					const response = await fetch(`${API_BASE}/characters?${params.toString()}`);
+					if (!response.ok) {
+						throw new Error(`HTTP error! status: ${response.status}`);
+					}
+					const data = await response.json();
+					renderCharacters(data.characters);
+					renderPagination(data.totalItems, data.totalPages);
+				} catch (error) {
+					console.error("Error fetching characters:", error);
+					renderError("Failed to load characters. Please try again.");
+				} finally {
+					isLoading = false;
+				}
+			}
+
+			// --- Rendering ---
+			function renderLoading() {
+				charsContainer.innerHTML = '<div class="loading">Loading characters...</div>';
+				paginationContainer.innerHTML = ""; // Clear pagination during load
+			}
+
+			function renderError(message) {
+				charsContainer.innerHTML = `<div class="status">${sanitizeHTML(message)}</div>`;
+				paginationContainer.innerHTML = "";
+			}
+
+			function populateCategoryFilter(categories) {
+				if (!categories) return;
+				// Keep the "All Categories" option
+				categoryFilter.innerHTML = '<option value="">All Categories</option>';
+				for (const [abbr, name] of Object.entries(categories)) {
+					const option = document.createElement("option");
+					option.value = abbr;
+					option.textContent = `${name} (${abbr})`; // Show both name and abbr
+					categoryFilter.appendChild(option);
+				}
+				categoryFilter.disabled = false;
+			}
+
+			// Add populateBlockFilter similarly if implementing blocks
+
+			function renderCharacters(characters) {
+				charsContainer.innerHTML = ""; // Clear previous content or loading indicator
+
+				if (!characters || characters.length === 0) {
+					charsContainer.innerHTML = '<div class="status">No characters found matching your criteria.</div>';
+					return;
+				}
+
+				const fragment = document.createDocumentFragment();
+				characters.forEach((charInfo) => {
+					const card = document.createElement("div");
+					card.className = "char-card";
+					card.innerHTML = `
+                        <span class="char">${sanitizeHTML(charInfo.char)}</span>
+                        <span class="code">${sanitizeHTML(charInfo.codePoint)}</span>
+                    `;
+					// Store data directly on the element for easy access in the detail view
+					card.dataset.char = charInfo.char;
+					card.dataset.codepoint = charInfo.codePoint;
+					card.dataset.name = charInfo.name;
+					card.dataset.category = charInfo.category;
+					card.dataset.categoryAb = charInfo.categoryAb;
+					// card.dataset.block = charInfo.blockName || 'N/A'; // Add if block implemented
+
+					card.addEventListener("click", () => showDetail(card.dataset));
+					fragment.appendChild(card);
+				});
+				charsContainer.appendChild(fragment);
+			}
+
+			function renderPagination(totalItems, calculatedTotalPages) {
+				paginationContainer.innerHTML = ""; // Clear previous pagination
+				totalPages = calculatedTotalPages; // Update global totalPages
+
+				if (totalPages <= 1) {
+					return; // No pagination needed for 0 or 1 page
+				}
+
+				const fragment = document.createDocumentFragment();
+
+				// Optional: Add Page Info
+				const pageInfo = document.createElement("span");
+				pageInfo.className = "page-info";
+				pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+				fragment.appendChild(pageInfo);
+
+				// Max number of page buttons to display
+				const maxButtons = 7;
+				let startPage, endPage;
+
+				if (totalPages <= maxButtons) {
+					// Show all pages if total is less than max
+					startPage = 1;
+					endPage = totalPages;
+				} else {
+					// Calculate start and end pages for ellipsis logic
+					const maxPagesBeforeCurrent = Math.floor((maxButtons - 3) / 2); // -3 for first, last, current
+					const maxPagesAfterCurrent = Math.ceil((maxButtons - 3) / 2);
+
+					if (currentPage <= maxPagesBeforeCurrent + 1) {
+						// Near the beginning
+						startPage = 1;
+						endPage = maxButtons - 1; // Leave space for '...' and last page
+					} else if (currentPage + maxPagesAfterCurrent >= totalPages) {
+						// Near the end
+						startPage = totalPages - (maxButtons - 2); // Leave space for first page and '...'
+						endPage = totalPages;
+					} else {
+						// In the middle
+						startPage = currentPage - maxPagesBeforeCurrent;
+						endPage = currentPage + maxPagesAfterCurrent;
+					}
+				}
+
+				// Function to create a button
+				const createButton = (pageNumber, text = pageNumber) => {
+					const btn = document.createElement("button");
+					btn.className = "page-btn";
+					btn.textContent = text;
+					if (pageNumber === currentPage) {
+						btn.classList.add("active");
+					}
+					btn.addEventListener("click", () => {
+						if (pageNumber !== currentPage) {
+							currentPage = pageNumber;
+							fetchCharacters();
+							// Optional: Scroll to top after page change
+							window.scrollTo({ top: 0, behavior: "smooth" });
+						}
+					});
+					return btn;
+				};
+
+				// Previous Button
+				const prevBtn = document.createElement("button");
+				prevBtn.className = "page-btn";
+				prevBtn.textContent = "«";
+				prevBtn.disabled = currentPage === 1;
+				prevBtn.addEventListener("click", () => {
+					if (currentPage > 1) {
+						currentPage--;
+						fetchCharacters();
+						window.scrollTo({ top: 0, behavior: "smooth" });
+					}
+				});
+				fragment.appendChild(prevBtn);
+
+				// Page Number Buttons (with ellipsis logic if needed)
+				if (startPage > 1) {
+					fragment.appendChild(createButton(1));
+					if (startPage > 2) {
+						const ellipsis = document.createElement("span");
+						ellipsis.textContent = "...";
+						ellipsis.className = "page-info"; // Style ellipsis like page info
+						fragment.appendChild(ellipsis);
+					}
+				}
+
+				for (let i = startPage; i <= endPage; i++) {
+					fragment.appendChild(createButton(i));
+				}
+
+				if (endPage < totalPages) {
+					if (endPage < totalPages - 1) {
+						const ellipsis = document.createElement("span");
+						ellipsis.textContent = "...";
+						ellipsis.className = "page-info";
+						fragment.appendChild(ellipsis);
+					}
+					fragment.appendChild(createButton(totalPages));
+				}
+
+				// Next Button
+				const nextBtn = document.createElement("button");
+				nextBtn.className = "page-btn";
+				nextBtn.textContent = "»";
+				nextBtn.disabled = currentPage === totalPages;
+				nextBtn.addEventListener("click", () => {
+					if (currentPage < totalPages) {
+						currentPage++;
+						fetchCharacters();
+						window.scrollTo({ top: 0, behavior: "smooth" });
+					}
+				});
+				fragment.appendChild(nextBtn);
+
+				paginationContainer.appendChild(fragment);
+			}
+
+			// --- Detail View ---
+			function showDetail(data) {
+				currentDetailData = data; // Store for copy button
+				detailChar.textContent = data.char;
+				detailInfo.innerHTML = `
+                    <table>
+                        <tr><th>Name</th><td>${sanitizeHTML(data.name)}</td></tr>
+                        <tr><th>Code Point</th><td>${sanitizeHTML(data.codepoint)}</td></tr>
+                        <tr><th>Category</th><td>${sanitizeHTML(data.category)} (${sanitizeHTML(data.categoryAb)})</td></tr>
+                        <!-- Add Block Row if implemented -->
+                        <!-- <tr><th>Block</th><td>${sanitizeHTML(data.block)}</td></tr> -->
+                        <tr><th>HTML Entity</th><td><code>&amp;#${parseInt(data.codepoint.substring(2), 16)};</code></td></tr>
+                        <tr><th>UTF-8 Bytes</th><td>${sanitizeHTML(utf8Bytes(data.char))}</td></tr>
+                    </table>
+                 `;
+				detailView.classList.add("visible");
+			}
+
+			function hideDetail() {
+				detailView.classList.remove("visible");
+				currentDetailData = null; // Clear stored data
+			}
+
+			// Helper to get UTF-8 bytes as hex
+			function utf8Bytes(str) {
+				try {
+					const bytes = new TextEncoder().encode(str);
+					return Array.from(bytes)
+						.map((b) => "0x" + b.toString(16).toUpperCase().padStart(2, "0"))
+						.join(" ");
+				} catch (e) {
+					return "N/A";
+				}
+			}
+
+			// --- Event Listeners ---
+			searchInput.addEventListener(
+				"input",
+				debounce(() => {
+					currentSearch = searchInput.value.trim();
+					currentPage = 1; // Reset to first page on new search
+					fetchCharacters();
+				}, 300),
+			); // 300ms debounce
+
+			categoryFilter.addEventListener("change", () => {
+				currentCategory = categoryFilter.value;
+				currentPage = 1; // Reset page on filter change
+				fetchCharacters();
+			});
+
+			// Add blockFilter listener if implemented
+
+			closeDetailBtn.addEventListener("click", hideDetail);
+
+			copyDetailBtn.addEventListener("click", () => {
+				if (currentDetailData) {
+					copyToClipboard(currentDetailData.char);
+				}
+			});
+
+			// Close detail view if clicking outside the card
+			detailView.addEventListener("click", (event) => {
+				if (event.target === detailView) {
+					// Check if the click was directly on the overlay
+					hideDetail();
+				}
+			});
+
+			// Close detail view with Escape key
+			document.addEventListener("keydown", (event) => {
+				if (event.key === "Escape" && detailView.classList.contains("visible")) {
+					hideDetail();
+				}
+			});
+
+			// --- Initialization ---
+			document.addEventListener("DOMContentLoaded", () => {
+				fetchMetadata(); // Fetch categories for the dropdown first
+				fetchCharacters(); // Then fetch the initial character list
+			});
+		</script>
+	</body>
+</html>
