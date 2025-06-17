@@ -1,0 +1,331 @@
+[{
+	"resource": "/C:/Users/drewg/proj/golang/goplunk/internal/animation.go",
+	"owner": "_generated_diagnostic_collection_name_#6",
+	"severity": 8,
+	"message": "found packages animation (animation.go) and app (app.go) in C:\\Users\\drewg\\proj\\golang\\goplunk\\internal",
+	"source": "go list",
+	"startLineNumber": 1,
+	"startColumn": 1,
+	"endLineNumber": 1,
+	"endColumn": 1
+},{
+	"resource": "/C:/Users/drewg/proj/golang/goplunk/internal/animation.go",
+	"owner": "_generated_diagnostic_collection_name_#6",
+	"code": {
+		"value": "UndeclaredImportedName",
+		"target": {
+			"$mid": 1,
+			"path": "/golang.org/x/tools/internal/typesinternal",
+			"scheme": "https",
+			"authority": "pkg.go.dev",
+			"fragment": "UndeclaredImportedName"
+		}
+	},
+	"severity": 8,
+	"message": "undefined: math.Rand",
+	"source": "compiler",
+	"startLineNumber": 177,
+	"startColumn": 37,
+	"endLineNumber": 177,
+	"endColumn": 41
+},{
+	"resource": "/C:/Users/drewg/proj/golang/goplunk/internal/animation.go",
+	"owner": "_generated_diagnostic_collection_name_#6",
+	"code": {
+		"value": "UndeclaredImportedName",
+		"target": {
+			"$mid": 1,
+			"path": "/golang.org/x/tools/internal/typesinternal",
+			"scheme": "https",
+			"authority": "pkg.go.dev",
+			"fragment": "UndeclaredImportedName"
+		}
+	},
+	"severity": 8,
+	"message": "undefined: math.Rand",
+	"source": "compiler",
+	"startLineNumber": 184,
+	"startColumn": 39,
+	"endLineNumber": 184,
+	"endColumn": 43
+},{
+	"resource": "/C:/Users/drewg/proj/golang/goplunk/internal/animation.go",
+	"owner": "_generated_diagnostic_collection_name_#6",
+	"code": {
+		"value": "UndeclaredImportedName",
+		"target": {
+			"$mid": 1,
+			"path": "/golang.org/x/tools/internal/typesinternal",
+			"scheme": "https",
+			"authority": "pkg.go.dev",
+			"fragment": "UndeclaredImportedName"
+		}
+	},
+	"severity": 8,
+	"message": "undefined: math.Rand",
+	"source": "compiler",
+	"startLineNumber": 185,
+	"startColumn": 43,
+	"endLineNumber": 185,
+	"endColumn": 47
+},{
+	"resource": "/C:/Users/drewg/proj/golang/goplunk/internal/animation.go",
+	"owner": "_generated_diagnostic_collection_name_#6",
+	"code": {
+		"value": "UndeclaredImportedName",
+		"target": {
+			"$mid": 1,
+			"path": "/golang.org/x/tools/internal/typesinternal",
+			"scheme": "https",
+			"authority": "pkg.go.dev",
+			"fragment": "UndeclaredImportedName"
+		}
+	},
+	"severity": 8,
+	"message": "undefined: math.Rand",
+	"source": "compiler",
+	"startLineNumber": 186,
+	"startColumn": 40,
+	"endLineNumber": 186,
+	"endColumn": 44
+},{
+	"resource": "/C:/Users/drewg/proj/golang/goplunk/internal/animation.go",
+	"owner": "_generated_diagnostic_collection_name_#6",
+	"code": {
+		"value": "IncompatibleAssign",
+		"target": {
+			"$mid": 1,
+			"path": "/golang.org/x/tools/internal/typesinternal",
+			"scheme": "https",
+			"authority": "pkg.go.dev",
+			"fragment": "IncompatibleAssign"
+		}
+	},
+	"severity": 8,
+	"message": "cannot use math.Max(0, progress - 0.1) (value of type float64) as float32 value in argument to easeOutQuad",
+	"source": "compiler",
+	"startLineNumber": 267,
+	"startColumn": 35,
+	"endLineNumber": 267,
+	"endColumn": 60
+},{
+	"resource": "/C:/Users/drewg/proj/golang/goplunk/internal/animation.go",
+	"owner": "_generated_diagnostic_collection_name_#6",
+	"code": {
+		"value": "IncompatibleAssign",
+		"target": {
+			"$mid": 1,
+			"path": "/golang.org/x/tools/internal/typesinternal",
+			"scheme": "https",
+			"authority": "pkg.go.dev",
+			"fragment": "IncompatibleAssign"
+		}
+	},
+	"severity": 8,
+	"message": "cannot use progress - 0.1 (value of type float32) as float64 value in argument to math.Max",
+	"source": "compiler",
+	"startLineNumber": 267,
+	"startColumn": 47,
+	"endLineNumber": 267,
+	"endColumn": 59
+},{
+	"resource": "/C:/Users/drewg/proj/golang/goplunk/internal/animation.go",
+	"owner": "_generated_diagnostic_collection_name_#6",
+	"code": {
+		"value": "IncompatibleAssign",
+		"target": {
+			"$mid": 1,
+			"path": "/golang.org/x/tools/internal/typesinternal",
+			"scheme": "https",
+			"authority": "pkg.go.dev",
+			"fragment": "IncompatibleAssign"
+		}
+	},
+	"severity": 8,
+	"message": "cannot use math.Max(0, progress - 0.2) (value of type float64) as float32 value in argument to easeOutQuad",
+	"source": "compiler",
+	"startLineNumber": 268,
+	"startColumn": 35,
+	"endLineNumber": 268,
+	"endColumn": 60
+},{
+	"resource": "/C:/Users/drewg/proj/golang/goplunk/internal/animation.go",
+	"owner": "_generated_diagnostic_collection_name_#6",
+	"code": {
+		"value": "IncompatibleAssign",
+		"target": {
+			"$mid": 1,
+			"path": "/golang.org/x/tools/internal/typesinternal",
+			"scheme": "https",
+			"authority": "pkg.go.dev",
+			"fragment": "IncompatibleAssign"
+		}
+	},
+	"severity": 8,
+	"message": "cannot use progress - 0.2 (value of type float32) as float64 value in argument to math.Max",
+	"source": "compiler",
+	"startLineNumber": 268,
+	"startColumn": 47,
+	"endLineNumber": 268,
+	"endColumn": 59
+},{
+	"resource": "/C:/Users/drewg/proj/golang/goplunk/internal/app.go",
+	"owner": "_generated_diagnostic_collection_name_#6",
+	"severity": 8,
+	"message": "found packages animation (animation.go) and app (app.go) in C:\\Users\\drewg\\proj\\golang\\goplunk\\internal",
+	"source": "go list",
+	"startLineNumber": 1,
+	"startColumn": 1,
+	"endLineNumber": 1,
+	"endColumn": 1
+},{
+	"resource": "/C:/Users/drewg/proj/golang/goplunk/internal/app.go",
+	"owner": "_generated_diagnostic_collection_name_#6",
+	"code": {
+		"value": "MismatchedPkgName",
+		"target": {
+			"$mid": 1,
+			"path": "/golang.org/x/tools/internal/typesinternal",
+			"scheme": "https",
+			"authority": "pkg.go.dev",
+			"fragment": "MismatchedPkgName"
+		}
+	},
+	"severity": 8,
+	"message": "package app; expected package animation",
+	"source": "compiler",
+	"startLineNumber": 2,
+	"startColumn": 1,
+	"endLineNumber": 2,
+	"endColumn": 8
+},{
+	"resource": "/C:/Users/drewg/proj/golang/goplunk/internal/config.go",
+	"owner": "_generated_diagnostic_collection_name_#6",
+	"severity": 8,
+	"message": "found packages animation (animation.go) and app (app.go) in C:\\Users\\drewg\\proj\\golang\\goplunk\\internal",
+	"source": "go list",
+	"startLineNumber": 1,
+	"startColumn": 1,
+	"endLineNumber": 1,
+	"endColumn": 1
+},{
+	"resource": "/C:/Users/drewg/proj/golang/goplunk/internal/config.go",
+	"owner": "_generated_diagnostic_collection_name_#6",
+	"code": {
+		"value": "MismatchedPkgName",
+		"target": {
+			"$mid": 1,
+			"path": "/golang.org/x/tools/internal/typesinternal",
+			"scheme": "https",
+			"authority": "pkg.go.dev",
+			"fragment": "MismatchedPkgName"
+		}
+	},
+	"severity": 8,
+	"message": "package config; expected package animation",
+	"source": "compiler",
+	"startLineNumber": 1,
+	"startColumn": 1,
+	"endLineNumber": 1,
+	"endColumn": 8
+},{
+	"resource": "/C:/Users/drewg/proj/golang/goplunk/internal/input.go",
+	"owner": "_generated_diagnostic_collection_name_#6",
+	"severity": 8,
+	"message": "found packages animation (animation.go) and app (app.go) in C:\\Users\\drewg\\proj\\golang\\goplunk\\internal",
+	"source": "go list",
+	"startLineNumber": 1,
+	"startColumn": 1,
+	"endLineNumber": 1,
+	"endColumn": 1
+},{
+	"resource": "/C:/Users/drewg/proj/golang/goplunk/internal/input.go",
+	"owner": "_generated_diagnostic_collection_name_#6",
+	"code": {
+		"value": "MismatchedPkgName",
+		"target": {
+			"$mid": 1,
+			"path": "/golang.org/x/tools/internal/typesinternal",
+			"scheme": "https",
+			"authority": "pkg.go.dev",
+			"fragment": "MismatchedPkgName"
+		}
+	},
+	"severity": 8,
+	"message": "package input; expected package animation",
+	"source": "compiler",
+	"startLineNumber": 1,
+	"startColumn": 1,
+	"endLineNumber": 1,
+	"endColumn": 8
+},{
+	"resource": "/C:/Users/drewg/proj/golang/goplunk/internal/renderer.go",
+	"owner": "_generated_diagnostic_collection_name_#6",
+	"severity": 8,
+	"message": "found packages animation (animation.go) and app (app.go) in C:\\Users\\drewg\\proj\\golang\\goplunk\\internal",
+	"source": "go list",
+	"startLineNumber": 1,
+	"startColumn": 1,
+	"endLineNumber": 1,
+	"endColumn": 1
+},{
+	"resource": "/C:/Users/drewg/proj/golang/goplunk/internal/renderer.go",
+	"owner": "_generated_diagnostic_collection_name_#6",
+	"code": {
+		"value": "MismatchedPkgName",
+		"target": {
+			"$mid": 1,
+			"path": "/golang.org/x/tools/internal/typesinternal",
+			"scheme": "https",
+			"authority": "pkg.go.dev",
+			"fragment": "MismatchedPkgName"
+		}
+	},
+	"severity": 8,
+	"message": "package renderer; expected package animation",
+	"source": "compiler",
+	"startLineNumber": 2,
+	"startColumn": 1,
+	"endLineNumber": 2,
+	"endColumn": 8
+},{
+	"resource": "/C:/Users/drewg/proj/golang/goplunk/main.go",
+	"owner": "_generated_diagnostic_collection_name_#6",
+	"code": {
+		"value": "BrokenImport",
+		"target": {
+			"$mid": 1,
+			"path": "/golang.org/x/tools/internal/typesinternal",
+			"scheme": "https",
+			"authority": "pkg.go.dev",
+			"fragment": "BrokenImport"
+		}
+	},
+	"severity": 8,
+	"message": "could not import goplunk/internal/app (no required module provides package \"goplunk/internal/app\")",
+	"source": "compiler",
+	"startLineNumber": 13,
+	"startColumn": 2,
+	"endLineNumber": 13,
+	"endColumn": 24
+},{
+	"resource": "/C:/Users/drewg/proj/golang/goplunk/main.go",
+	"owner": "_generated_diagnostic_collection_name_#6",
+	"code": {
+		"value": "BrokenImport",
+		"target": {
+			"$mid": 1,
+			"path": "/golang.org/x/tools/internal/typesinternal",
+			"scheme": "https",
+			"authority": "pkg.go.dev",
+			"fragment": "BrokenImport"
+		}
+	},
+	"severity": 8,
+	"message": "could not import goplunk/internal/config (no required module provides package \"goplunk/internal/config\")",
+	"source": "compiler",
+	"startLineNumber": 14,
+	"startColumn": 2,
+	"endLineNumber": 14,
+	"endColumn": 27
+}]

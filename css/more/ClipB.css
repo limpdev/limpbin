@@ -1,0 +1,103 @@
+/* Copy button container */
+.code-wrapper {
+    position: relative;
+}
+
+.copy-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    background: #09090a;
+    border: 1px solid #09090a;
+    border-radius: 4px;
+    color: #7b98da;
+    opacity: 0.6;
+    font-size: large;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 1s ease;
+}
+
+.copy-button:hover {
+    color: #f5d49e;
+    border-color: transparent;
+    opacity: 1.0;
+    font-size: x-large;
+}
+
+/* SVG icon styles */
+.copy-button svg {
+    width: 19px;
+    height: 19px;
+    stroke: #f5d49e;
+    opacity: 0.4;
+    transition: all 0.5s ease;
+    transform-origin: center;
+}
+
+.copy-button:hover svg {
+    opacity: 0.97;
+    fill: #f5d49e;
+    transform: scale(1.25);
+}
+
+/* Tooltip styles */
+.copy-button[data-tooltip]::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    margin-bottom: 8px;
+    padding: 4px 8px;
+    background: #1a202c;
+    color: #bbbbbb;
+    font-size: 9px;
+    white-space: nowrap;
+    border-radius: 6px;
+    opacity: 0.4;
+    visibility: hidden;
+    transition: all 0.6s ease;
+}
+
+.copy-button[data-tooltip]:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Success state */
+.copy-button.copied {
+    border-color: #b5f700;
+    transition: all 0.6s ease;
+}
+
+.copy-button.copied svg {
+    stroke: #b5f700;
+}
+
+/* Ensure pre tags have relative positioning for button placement */
+pre {
+    position: relative;
+    padding-top: 1.25rem !important;
+    padding-left: 1.75em !important;
+}
+
+.language-label {
+    position: absolute;
+    top: 15px;
+    right: 60px;
+    background: #09090a;
+    font-size: 12px;
+    font-family: Satoshi, Author, "SF Pro Display";
+    border-radius: 0 4px 0 4px;
+    opacity: 0.4;
+    color: #f5d49e;
+    cursor: pointer;
+}
+
+.language-label:hover {
+    opacity: 0.8;
+}
